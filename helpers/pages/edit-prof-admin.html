@@ -1,0 +1,126 @@
+<div class="col-md-8 offset-md-2">
+    <div class="card my-4">
+        <div class="card-body">
+            <h4 class="text-center text-danger heading">Edit Profile</h4>
+            <form method="post" action="{AbsUrl}save-prof-admin/{cId}/">
+                {profCrtdFor}
+                {martStat}
+                <div class="form-group">
+                    <label for="rashi" class="col-12 text-info">Rashi</label>
+                    <div class="col-12">
+                        <select class="form-control" name="rashi" id="rashi">
+                            {rashi}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="star" class="col-12 text-info">Star</label>
+                    <div class="col-12">
+                        <select class="form-control" name="star" id="star">
+                            {star}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gothra" class="col-12 text-info">Gothra</label>
+                    <div class="col-12">
+                        <input type="text" name="gothra" id="gothra" class="form-control" value="{gothra}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="col-12 text-info">State</label>
+                    <div class="col-12">
+                        <select class="form-control" name="state" id="state">
+                            {state}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="col-12 text-info">City</label>
+                    <div class="col-12">
+                        <input type="text" name="city" id="city" class="form-control" value="{city}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="height" class="col-12 text-info">Height</label>
+                    <div class="col-12">
+                        <input type="text" name="height" id="height" class="form-control" value="{height}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="weight" class="col-12 text-info">Weight</label>
+                    <div class="col-12">
+                        <input type="text" name="weight" id="weight" class="form-control" value="{weight}" required="required">
+                    </div>
+                </div>
+                {bodyType}
+                {complexion}
+                {phyStat}
+                <div class="form-group">
+                    <label for="edu" class="col-12 text-info">Education</label>
+                    <div class="col-12">
+                        <select class="form-control" name="edu" id="edu">
+                            {education}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eduDet" class="col-12 text-info">Education Details</label>
+                    <div class="col-12">
+                        <input type="text" name="eduDet" id="eduDet" class="form-control" value="{eduDet}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ocu" class="col-12 text-info">Occupation</label>
+                    <div class="col-12">
+                        <select class="form-control" name="ocu" id="ocu">
+                            {occupation}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="occDet" class="col-12 text-info">Occupation Details</label>
+                    <div class="col-12">
+                        <input type="text" name="occDet" id="occDet" class="form-control" value="{occDet}" required="required">
+                    </div>
+                </div>
+                {emplIn}
+                <div class="form-group">
+                    <label for="income" class="col-12 text-info">Income</label>
+                    <div class="col-12">
+                        <select class="form-control" name="income" id="income">
+                            {income}
+                        </select>
+                    </div>
+                </div>
+                {food}
+                {smoke}
+                {drink}
+                {famStat}
+                {famTyp}
+                {famVal}
+                <div class="form-group">
+                    <label for="occFat" class="col-12 text-info">Father&#39;s Occupation</label>
+                    <div class="col-12">
+                        <input type="text" name="occFat" id="occFat" class="form-control" value="{occFat}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="occMot" class="col-12 text-info">Mother&#39;s Occupation</label>
+                    <div class="col-12">
+                        <input type="text" name="occMot" id="occMot" class="form-control" value="{occMot}" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-12 text-info">Description</label>
+                    <div class="col-12">
+                        <textarea class="form-control" name="desc" id="desc">{desc}</textarea>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-danger" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

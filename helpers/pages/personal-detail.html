@@ -1,0 +1,328 @@
+<div class="container pb-2">
+    <div class="col-md-8 offset-md-2">
+        <div class="card bg-dark-grad box-shadow mt-2">
+            <div class="card-body">
+                <h4 class="text-primary text-center text-uppercase heading">Personal Detail</h4>
+                <form class="text-light" method="post" action="{AbsUrl}save-personal-detail/{custId}/" name="savePerDetForm" enctype="multipart/form-data" id="savePerDetForm" role="form">
+                    <label class="col-12 text-info">Profile Created for</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="self" value="1" checked="checked" class="form-check-input">
+                        <label class="form-check-label" for="self">Self</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="son" value="2" class="form-check-input">
+                        <label class="form-check-label" for="son">Son</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="daughter" value="3" class="form-check-input">
+                        <label class="form-check-label" for="daughter">Daughter</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="brother" value="4" class="form-check-input">
+                        <label class="form-check-label" for="brother">Brother</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="relative" value="5" class="form-check-input">
+                        <label class="form-check-label" for="relative">Relative</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="sister" value="6" class="form-check-input">
+                        <label class="form-check-label" for="sister">Sister</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="profCreated" id="friend" value="7" class="form-check-input">
+                        <label class="form-check-label" for="friend">Friend</label>
+                    </div>
+                    <label class="col-12 text-info">Marital Status</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="maritalStatus" id="unmarried" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="unmarried">Unmarried</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="maritalStatus" id="widower" value="2" class="form-check-input">
+                        <label class="form-check-label" for="widower">Widower</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="maritalStatus" id="divorced" value="3" class="form-check-input">
+                        <label class="form-check-label" for="divorced">Divorced</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="maritalStatus" id="awtDivorce" value="4" class="form-check-input">
+                        <label class="form-check-label" for="awtDivorce">Awaiting Divorce</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="rashi" class="col-12 text-info">Rashi</label>
+                        <div class="col-12">                                
+                            <select class="form-control" name="rashi" id="rashi">
+                                {rashi}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="star" class="col-12 text-info">Star</label>
+                        <div class="col-12">                                
+                            <select class="form-control" name="star" id="star">
+                                {star}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gothra" class="col-12 text-info">Gothra</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="gothra" id="gothra" placeholder="Your Gothra">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="residingState" class="col-12 text-info">Residing State</label>
+                        <div class="col-12">
+                            <select class="form-control" name="residingState" id="residingState">
+                                {state}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="residingCity" class="col-12 text-info">Residing City</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="residingCity" id="residingCity" placeholder="Residing City">
+                        </div>
+                    </div>
+                    <h5 class="text-center text-primary text-uppercase heading">Physical Attributes</h5>
+                    <div class="form-group">
+                        <label for="height" class="col-12 text-info">Height</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="height" id="height" placeholder="Your Height">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight" class="col-12 text-info">Weight(Kilogram)</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="weight" id="weight" placeholder="Your Weight">
+                        </div>
+                    </div>
+                    <label class="col-12 text-info">Body Type</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="bodyType" id="average" value="1" checked="checked" class="form-check-input">
+                        <label class="form-check-label" for="average">Average</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="bodyType" id="athletic" value="2" class="form-check-input">
+                        <label class="form-check-label" for="athletic">Athletic</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="bodyType" id="slim" value="3" class="form-check-input">
+                        <label class="form-check-label" for="slim">Slim</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="bodyType" id="heavy" value="4" class="form-check-input">
+                        <label class="form-check-label" for="heavy">Heavy</label>
+                    </div>
+                    <label class="col-12 text-info">Complexion</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="complexion" id="vryFair" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="vryFair">Very Fair</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="complexion" id="fair" value="2" class="form-check-input">
+                        <label class="form-check-label" for="fair">Fair</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="complexion" id="wheatish" value="3" class="form-check-input">
+                        <label class="form-check-label" for="wheatish">Wheatish</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="complexion" id="wheatishBrown" value="4" class="form-check-input">
+                        <label class="form-check-label" for="wheatishBrown">Wheatish Brown</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="complexion" id="dark" value="5" class="form-check-input">
+                        <label class="form-check-label" for="dark">Dark</label>
+                    </div>
+                    <label class="col-12 text-info">Physical Status</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="phyisicalStatus" id="normal" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="normal">Normal</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="phyisicalStatus" id="phyChallenged" value="2" class="form-check-input">
+                        <label class="form-check-label" for="phyChallenged">Physically Challenged</label>
+                    </div>
+                    <h5 class="text-center text-primary text-uppercase heading">Education and Occupation</h5>
+                    <div class="form-group">
+                        <label for="education" class="col-12 text-info">Education</label>
+                        <div class="col-12">
+                            <select class="form-control" name="education" id="education">
+                                {education}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eduDetails" class="col-12 text-info">Education Details</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="eduDetails" id="eduDetails" placeholder="Education Details" required="required"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation" class="col-12 text-info">occupation</label>
+                        <div class="col-12">
+                            <select class="form-control" name="occupation" id="occupation">
+                                {occupation}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occDetails" class="col-12 text-info">Occupation Details</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="occDetails" id="occDetails" placeholder="Occupation Details" required="required"></textarea>
+                        </div>
+                    </div>
+                    <label class="col-12 text-info">Employed In</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="government" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="government">Government</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="private" value="2" class="form-check-input">
+                        <label class="form-check-label" for="private">Private</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="business" value="3" class="form-check-input">
+                        <label class="form-check-label" for="business">Business</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="Defence" value="4" class="form-check-input">
+                        <label class="form-check-label" for="Defence">Defence</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="SelfEmployed" value="5" class="form-check-input">
+                        <label class="form-check-label" for="SelfEmployed">Self Employed</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="employedIn" id="notWorking" value="6" class="form-check-input">
+                        <label class="form-check-label" for="notWorking">Not Working</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="income" class="col-12 text-info">Income</label>
+                        <div class="col-12">
+                            <select class="form-control" name="income" id="income">
+                                {income}
+                            </select>
+                        </div>
+                    </div>
+                    <h5 class="text-center text-primary text-uppercase heading">Habits</h5>
+                    <label class="col-12 text-info">Food</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="food" id="vegetarian" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="food" id="nonVegitarian" value="2" class="form-check-input">
+                        <label class="form-check-label" for="nonVegitarian">Non Vegitarian</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="food" id="eggetarian" value="3" class="form-check-input">
+                        <label class="form-check-label" for="eggetarian">Eggetarian</label>
+                    </div>
+                    <label class="col-12 text-info">Smoking</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="smoking" id="no" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="no">No</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="smoking" id="occasionally" value="2" class="form-check-input">
+                        <label class="form-check-label" for="occasionally">Occasionally</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="smoking" id="yes" value="3" class="form-check-input">
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <label class="col-12 text-info">Drinking</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="drinking" id="noDrnk" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="noDrnk">No</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="drinking" id="occasionallyDrnk" value="2" class="form-check-input">
+                        <label class="form-check-label" for="occasionallyDrnk">Occasionally</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="drinking" id="yesDrnk" value="3" class="form-check-input">
+                        <label class="form-check-label" for="yesDrnk">Yes</label>
+                    </div>
+                    <h5 class="text-center text-primary text-uppercase heading">Family Profile</h5>
+                    <label class="col-12 text-info">Family Status</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyStatus" id="middleClass" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="middleClass">Middle Class</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyStatus" id="upMiddleClass" value="2" class="form-check-input">
+                        <label class="form-check-label" for="upMiddleClass">Upper Middle Class</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyStatus" id="rich" value="3" class="form-check-input">
+                        <label class="form-check-label" for="rich">Rich</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyStatus" id="affluent" value="4" class="form-check-input">
+                        <label class="form-check-label" for="affluent">Affluent</label>
+                    </div>
+                    <label class="col-12 text-info">Family Type</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyType" id="joint" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="joint">Joint</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyType" id="Nuclear" value="2" class="form-check-input">
+                        <label class="form-check-label" for="Nuclear">Nuclear</label>
+                    </div>
+                    <label class="col-12 text-info">Family Values</label>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyValues" id="orthodox" value="1" class="form-check-input" checked="checked">
+                        <label class="form-check-label" for="orthodox">Orthodox</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyValues" id="traditional" value="2" class="form-check-input">
+                        <label class="form-check-label" for="traditional">Traditional</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyValues" id="moderate" value="3" class="form-check-input">
+                        <label class="form-check-label" for="moderate">Moderate</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-3">
+                        <input type="radio" name="familyValues" id="liberal" value="4" class="form-check-input">
+                        <label class="form-check-label" for="liberal">Liberal</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-12 text-info" for="occFather">Father&#039;s Occupation</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="occFather" id="occFather" required="required" placeholder="Occupation of your Father">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-12 text-info" for="occMother">Mother&#039;s Occupation</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="occMother" id="occMother" required="required" placeholder="Occupation of your Mother">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-12 text-info" for="desc">Description</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="desc" id="desc" required="required" placeholder="Describe About Yourself"></textarea>
+                            <cite class="help-block text-warning">Describe within 300 characters</cite>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadPhoto" class="text-info col-12">Upload Image</label>
+                        <div class="col-12">
+                            <input type="file" class="form-control-file" name="uploadPhoto" id="uploadPhoto" required="required">
+                            <cite class="help-block text-warning">Image Size must be less than 10 MB</cite>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-danger" name="submitPerDet" id="submitPerDet" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

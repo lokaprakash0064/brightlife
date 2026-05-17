@@ -1,0 +1,20 @@
+<script>
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    $('#dob').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        maxDate: today
+    });
+</script>
+<script>
+    $('.banner').backstretch([
+        "{ImgPath}1.jpg"
+                , "{ImgPath}2.jpg"
+                , "{ImgPath}1.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
+<script>
+    $(function () {
+        $('.success-story').jConveyorTicker();
+    });
+</script>

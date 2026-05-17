@@ -1,0 +1,111 @@
+<div class="inner-banner"></div>
+<div class="container pb-2">
+    <h3 class="text-center text-primary text-uppercase heading mt-3">Personal Details</h3>
+    <div class="col-md-8 offset-md-2">
+        <div class="card bg-dark-grad box-shadow">
+            <div class="card-body">
+                <form class="text-light" method="post" action="{AbsUrl}save-edited-personal-detail/{custId}/" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="residingState" class="col-12 text-info">State</label>
+                        <div class="col-12">
+                            <select class="form-control" name="residingState" id="residingState">
+                                {State}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="residingState" class="col-12 text-info">Residing City</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="residingCity" id="residingCity" value="{resCity}" required="required">
+                        </div>
+                    </div>
+                    <h3 class="text-center text-primary text-uppercase mt-2 mb-2 heading">Physical Attributes</h3>
+                    <div class="form-group">
+                        <label for="height" class="col-12 text-info">Height</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="height" id="height" value="{height}" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="height" class="col-12 text-info">Weight (In KG)</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="weight" id="weight" value="{weight}" required="required">
+                        </div>
+                    </div>
+                    {bodyType}
+                    {complexion}
+                    {physicalStat}
+                    <h3 class="text-center text-primary text-uppercase mt-2 mb-2 heading">Education &amp; Occupation</h3>
+                    <div class="form-group">
+                        <label for="education" class="col-12 text-info">Education</label>
+                        <div class="col-12">
+                            <select class="form-control" name="education" id="education">
+                                {Education}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eduDetails" class="col-12 text-info">Details</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="eduDetails" id="eduDetails" required="required">{educationDetails}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupation" class="col-12 text-info">Occupation</label>
+                        <div class="col-12">
+                            <select class="form-control" name="occupation" id="occupation">
+                                {Occupation}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occDetails" class="col-12 text-info">Details</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="occDetails" id="occDetails" required="required">{occupationDetails}</textarea>
+                        </div>
+                    </div>
+                    {employedIn}
+                    <div class="form-group">
+                        <label for="income" class="col-12 text-info">Annual Income</label>
+                        <div class="col-12">
+                            <select class="form-control" name="income" id="income">
+                                {income}
+                            </select>
+                        </div>
+                    </div>
+                    <h3 class="text-center text-primary text-uppercase mt-2 mb-2 heading">Habits</h3>
+                    {food}
+                    {smoking}
+                    {drinking}
+                    <h3 class="text-center text-primary text-uppercase mt-2 mb-2 heading">Family Profile</h3>
+                    {familyStat}
+                    {familyType}
+                    {familyValues}
+                    <div class="form-group">
+                        <label for="occFather" class="col-12 text-info">Father&#39;s Occupation</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="occFather" id="occFather" value="{fatherOcc}" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occMother" class="col-12 text-info">Mother&#39;s Occupation</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="occMother" id="occMother" value="{motherOcc}" required="required">
+                        </div>
+                    </div>
+                    <h3 class="text-center text-primary text-uppercase heading mt-2 mb-2">Descriptions</h3>
+                    <div class="form-group">
+                        <label for="desc" class="col-12 text-info">Describe Yourself</label>
+                        <div class="col-12">
+                            <textarea class="form-control" name="desc" id="desc" required="required">{desc}</textarea>
+                            <cite class="help-block text-danger">Describe within 300 characters</cite>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-danger" name="submitPerDet" id="submitPerDet" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

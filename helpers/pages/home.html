@@ -1,0 +1,147 @@
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 mt-3">
+                <div class="banner-search">
+                    <form method="post" action="{AbsUrl}search-profile/" class="text-light">
+                        <div class="form-group">
+                            <label for="gender" class="col-12 mt-3">I&#039;m Looking For a</label>
+                            <div class="col-12">
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="1">Female</option>
+                                    <option value="2">Male</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age" class="col-12 mt-3">Aged Between</label>
+                            <div class="col-12">
+                                <select class="form-control" name="age" id="age">
+                                    <option value="1">18-25</option>
+                                    <option value="2">25-30</option>
+                                    <option value="3">30-35</option>
+                                    <option value="4">35-40</option>
+                                    <option value="5">All</option>
+                                    <option value="6">40+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="caste" class="col-12 mt-3">Caste</label>
+                            <div class="col-12">
+                                <select class="form-control" name="caste" id="caste">
+                                    {Caste}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rel" class="col-12 mt-3">Religion</label>
+                            <div class="col-12">
+                                <select class="form-control" name="rel" id="rel">
+                                    {religion}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="col-12 mt-3">State</label>
+                            <div class="col-12">
+                                <select class="form-control" name="state" id="state">
+                                    {State}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-center pb-2">
+                            <button type="submit" class="btn btn-outline-info">
+                                <i class="fas fa-flag-checkered"></i> Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2 class="text-center text-primary text-uppercase mt-2 heading">Find Your Special Someone</h2>
+    <div class="col">
+        <div class="card-group" data-aos="fade-in">
+            <div class="card text-center border-info">
+                <div class="card-body">
+                    <a href="#" data-toggle="modal" data-target="#signupModal">
+                        <i class="fas fa-8x fa-edit text-info"></i>
+                    </a>
+                    <h4 class="text-warning mt-2">Sign Up</h4>
+                    <p class="text-justify m-1 text-center">
+                        Register for free
+                    </p>
+                </div>
+            </div>
+            <div class="card text-center border-info">
+                <div class="card-body">
+                    <a href="#" data-toggle="modal" data-target="#signupModal">
+                        <i class="fas fa-8x fa-handshake text-info"></i>
+                    </a>
+                    <h4 class="text-warning mt-2">Connect</h4>
+                    <p class="text-center text-justify m-1">
+                        Connect with matches you like
+                    </p>
+                </div>
+            </div>
+            <div class="card text-center border-info">
+                <div class="card-body">
+                    <a href="#" data-toggle="modal" data-target="#signupModal">
+                        <i class="fas fa-8x fa-comments text-info"></i>
+                    </a>
+                    <h4 class="text-warning mt-2">Interact</h4>
+                    <p class="text-center text-justify m-1">
+                        Become a Premium member &amp; start conversation
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2 class="text-center text-primary text-uppercase mt-3 heading">Success Stories</h2>
+    <div class="success-story" data-aos="fade-in">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}rakesh-binee.jpg" alt="Rakesh & Binee" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Rakesh &amp; Binee</h5>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}saswat-swati.jpg" alt="Saswat & Swati" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Saswat &amp; Swati</h5>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}subhransu-diptimayee.jpg" alt="Subhransu & Diptimayee" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Subhransu &amp; Diptimayee</h5>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}priyabrata-puspa.jpg" alt="Priyabrata & Puspa" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Priyabrata &amp; Puspa</h5>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}ratiranjan-monalisha.jpg" alt="Ratiranjan & Monalisha" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Ratiranjan &amp; Monalisha</h5>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card border-danger box-shadow" style="width: 250px">
+                    <img src="{ImgPath}rosy-asutosh.jpg" alt="Rosy & Asutosh" class="card-img-top">
+                    <h5 class="card-title text-info text-center my-2">Rosy &amp; Asutosh</h5>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
