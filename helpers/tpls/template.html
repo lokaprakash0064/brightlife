@@ -57,12 +57,14 @@
     <body data-abs="{AbsUrl}notification/" id="body">
         <div class="bg-grad">
             <div class="head-top">
-                <div class="container-fluid">
-                    <div class="row p-2">
-                        <div class="col-md-6 text-left">
-                            <a href="tel:09238557572" class="btn btn-info box-shadow">Customer Care: 9238557572</a>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 col-12 text-md-left text-center py-1">
+                            <a href="tel:09238557572" class="bl-topbar-phone">
+                                <i class="fas fa-phone-alt"></i> Customer Care: 9238557572
+                            </a>
                         </div>
-                        <div class="col-md-6 text-right">
+                        <div class="col-md-6 col-12 text-md-right text-center py-1">
                             {buttonHead}
                         </div>
                     </div>
@@ -77,7 +79,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav ml-auto align-items-lg-center">
                             <li class="nav-item px-2">
                                 <a href="{HomeUrl}" class="nav-link">Home</a>
                             </li>
@@ -85,8 +87,8 @@
                                 <a href="{AbsUrl}about/" class="nav-link">About</a>
                             </li>
                             <li class="nav-item px-2 dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="navbarServicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarServicesDropdown">
                                     <a class="dropdown-item" href="{AbsUrl}background-verification/">Background Verification</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{AbsUrl}online-services/">Online Services</a>
@@ -95,8 +97,8 @@
                                 </div>
                             </li>
                             <li class="nav-item px-2 dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="navbarSearchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarSearchDropdown">
                                     <a class="dropdown-item" href="{AbsUrl}search-by-id/">Search by ID</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{AbsUrl}search/">Search</a>

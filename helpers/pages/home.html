@@ -1,147 +1,298 @@
-<div class="banner">
+<!-- HOME PAGE — Brightlife Matrimony v2 — Phase 3 Redesign
+     Tokens used: AbsUrl, Caste, religion, State, ImgPath
+     Modals: signupModal, loginModal (defined in template.html) -->
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 1 — Hero / Banner
+     .bl-hero and its children are defined in brightlife-v2.css §13.
+     Background image uses {ImgPath} token — resolved by assignTemplate().
+     .bl-hero-content is a flex row that collapses to column at ≤992px.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="bl-hero" style="background-image: url('{ImgPath}1.jpg')">
     <div class="container">
+        <div class="bl-hero-content">
+
+            <!-- Hero Text -->
+            <div class="bl-hero-text bl-anim-fadeInUp">
+                <h1>We will help you find a Life Partner of your dreams</h1>
+                <p>Join thousands of families who trusted Brightlife Matrimony to find their perfect match.</p>
+                <a href="#" data-toggle="modal" data-target="#signupModal" class="btn-bl-primary">
+                    <i class="fas fa-user-plus mr-2"></i>Register Free
+                </a>
+            </div>
+
+            <!-- Search Form Card -->
+            <div class="bl-search-form bl-anim-fadeInUp bl-anim-delay-2">
+                <h3><i class="fas fa-search mr-2" style="color: var(--bl-primary)"></i>Find Your Match</h3>
+                <form method="post" action="{AbsUrl}search-profile/">
+                    <div class="form-group">
+                        <label for="gender" class="small text-muted mb-1">I'm Looking For a</label>
+                        <select class="form-control" name="gender" id="gender">
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="small text-muted mb-1">Aged Between</label>
+                        <select class="form-control" name="age" id="age">
+                            <option value="1">18–25</option>
+                            <option value="2">25–30</option>
+                            <option value="3">30–35</option>
+                            <option value="4">35–40</option>
+                            <option value="5">All</option>
+                            <option value="6">40+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="caste" class="small text-muted mb-1">Caste</label>
+                        <select class="form-control" name="caste" id="caste">
+                            {Caste}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel" class="small text-muted mb-1">Religion</label>
+                        <select class="form-control" name="rel" id="rel">
+                            {religion}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="small text-muted mb-1">State</label>
+                        <select class="form-control" name="state" id="state">
+                            {State}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-bl-primary w-100 mt-2" style="border: none">
+                        <i class="fas fa-search mr-1"></i>Search Now
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 2 — How It Works
+     Three steps: Sign Up → Connect → Interact.
+     All three trigger #signupModal (preserving original intent).
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Find Your Special Someone</h2>
+            <p>Getting started is simple — three easy steps to your perfect match</p>
+        </div>
         <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4 mt-3">
-                <div class="banner-search">
-                    <form method="post" action="{AbsUrl}search-profile/" class="text-light">
-                        <div class="form-group">
-                            <label for="gender" class="col-12 mt-3">I&#039;m Looking For a</label>
-                            <div class="col-12">
-                                <select class="form-control" name="gender" id="gender">
-                                    <option value="1">Female</option>
-                                    <option value="2">Male</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="age" class="col-12 mt-3">Aged Between</label>
-                            <div class="col-12">
-                                <select class="form-control" name="age" id="age">
-                                    <option value="1">18-25</option>
-                                    <option value="2">25-30</option>
-                                    <option value="3">30-35</option>
-                                    <option value="4">35-40</option>
-                                    <option value="5">All</option>
-                                    <option value="6">40+</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="caste" class="col-12 mt-3">Caste</label>
-                            <div class="col-12">
-                                <select class="form-control" name="caste" id="caste">
-                                    {Caste}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="rel" class="col-12 mt-3">Religion</label>
-                            <div class="col-12">
-                                <select class="form-control" name="rel" id="rel">
-                                    {religion}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="state" class="col-12 mt-3">State</label>
-                            <div class="col-12">
-                                <select class="form-control" name="state" id="state">
-                                    {State}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="text-center pb-2">
-                            <button type="submit" class="btn btn-outline-info">
-                                <i class="fas fa-flag-checkered"></i> Search
-                            </button>
-                        </div>
-                    </form>
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-step-number">1</span>
+                    <span class="bl-feature-icon">
+                        <a href="#" data-toggle="modal" data-target="#signupModal" class="bl-feature-icon-link">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </span>
+                    <h3>Sign Up</h3>
+                    <p>Register for free and create your profile in just a few minutes.</p>
                 </div>
+            </div>
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-step-number">2</span>
+                    <span class="bl-feature-icon">
+                        <a href="#" data-toggle="modal" data-target="#signupModal" class="bl-feature-icon-link">
+                            <i class="fas fa-handshake"></i>
+                        </a>
+                    </span>
+                    <h3>Connect</h3>
+                    <p>Browse verified profiles and connect with matches you like.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-step-number">3</span>
+                    <span class="bl-feature-icon">
+                        <a href="#" data-toggle="modal" data-target="#signupModal" class="bl-feature-icon-link">
+                            <i class="fas fa-comments"></i>
+                        </a>
+                    </span>
+                    <h3>Interact</h3>
+                    <p>Become a Premium member and start meaningful conversations.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 3 — Why Choose Us
+     Generic feature cards — no token dependency.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Why Choose Brightlife</h2>
+            <p>Trusted by thousands of families across India for over a decade</p>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-feature-icon"><i class="fas fa-user-shield"></i></span>
+                    <h3>Verified Profiles</h3>
+                    <p>Every profile is manually reviewed to ensure authenticity and genuine matches.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-feature-icon"><i class="fas fa-heart"></i></span>
+                    <h3>Advanced Matching</h3>
+                    <p>Our intelligent system finds compatible partners based on your preferences and values.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bl-feature-card text-center h-100">
+                    <span class="bl-feature-icon"><i class="fas fa-lock"></i></span>
+                    <h3>Privacy Protection</h3>
+                    <p>Your privacy is our priority. Control exactly who can view your profile.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 4 — Success Stories
+     All six {ImgPath} tokens preserved with original filenames.
+     Layout: 3 per row on ≥lg, 2 per row on md, 1 per row on sm.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Success Stories</h2>
+            <p>Thousands of happy couples found their perfect match through Brightlife Matrimony</p>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}rakesh-binee.jpg" alt="Rakesh &amp; Binee">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Rakesh &amp; Binee</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="50">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}saswat-swati.jpg" alt="Saswat &amp; Swati">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Saswat &amp; Swati</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}subhransu-diptimayee.jpg" alt="Subhransu &amp; Diptimayee">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Subhransu &amp; Diptimayee</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}priyabrata-puspa.jpg" alt="Priyabrata &amp; Puspa">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Priyabrata &amp; Puspa</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}ratiranjan-monalisha.jpg" alt="Ratiranjan &amp; Monalisha">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Ratiranjan &amp; Monalisha</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="250">
+                <div class="bl-story-card">
+                    <div class="bl-story-img">
+                        <img src="{ImgPath}rosy-asutosh.jpg" alt="Rosy &amp; Asutosh">
+                    </div>
+                    <div class="bl-story-info">
+                        <h3>Rosy &amp; Asutosh</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 5 — Director's Message
+     Uses {ImgPath}director.jpg — no invented names or dates.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Director's Message</h2>
+        </div>
+        <div class="row align-items-center" data-aos="fade-up">
+            <div class="col-md-5 mb-4 mb-md-0 text-center">
+                <img src="{ImgPath}director.jpg" alt="Director, Brightlife Matrimony" class="bl-director-img img-fluid">
+            </div>
+            <div class="col-md-7 pl-md-5">
+                <h3 class="bl-director-heading">A Word From Our Director</h3>
+                <p class="text-muted">At Brightlife Matrimony, we believe that marriage is not just a union of two individuals, but a coming together of families, values, and dreams. Our mission is to facilitate this sacred bond with utmost care, respect, and professionalism.</p>
+                <p class="text-muted">We understand the importance of this life-changing decision, which is why we go beyond simply matching profiles. We provide personalised guidance and support throughout your journey to finding your life partner.</p>
+                <p class="text-muted">Our team works tirelessly to ensure that every member finds a match aligned with their values, culture, and aspirations.</p>
+                <a href="{AbsUrl}about/" class="btn-bl-outline mt-2 d-inline-block">Learn More About Us</a>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <h2 class="text-center text-primary text-uppercase mt-2 heading">Find Your Special Someone</h2>
-    <div class="col">
-        <div class="card-group" data-aos="fade-in">
-            <div class="card text-center border-info">
-                <div class="card-body">
-                    <a href="#" data-toggle="modal" data-target="#signupModal">
-                        <i class="fas fa-8x fa-edit text-info"></i>
-                    </a>
-                    <h4 class="text-warning mt-2">Sign Up</h4>
-                    <p class="text-justify m-1 text-center">
-                        Register for free
-                    </p>
-                </div>
-            </div>
-            <div class="card text-center border-info">
-                <div class="card-body">
-                    <a href="#" data-toggle="modal" data-target="#signupModal">
-                        <i class="fas fa-8x fa-handshake text-info"></i>
-                    </a>
-                    <h4 class="text-warning mt-2">Connect</h4>
-                    <p class="text-center text-justify m-1">
-                        Connect with matches you like
-                    </p>
-                </div>
-            </div>
-            <div class="card text-center border-info">
-                <div class="card-body">
-                    <a href="#" data-toggle="modal" data-target="#signupModal">
-                        <i class="fas fa-8x fa-comments text-info"></i>
-                    </a>
-                    <h4 class="text-warning mt-2">Interact</h4>
-                    <p class="text-center text-justify m-1">
-                        Become a Premium member &amp; start conversation
-                    </p>
-                </div>
-            </div>
-        </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     SECTION 6 — CTA Strip
+     .bl-cta styles in brightlife-v2.css §18.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="bl-cta text-center py-5" data-aos="fade-up">
+    <div class="container">
+        <h2>Ready to find your life partner?</h2>
+        <p>Register for free today and take the first step towards a beautiful future.</p>
+        <a href="#" data-toggle="modal" data-target="#signupModal" class="btn-bl-primary bl-cta-btn">
+            <i class="fas fa-user-plus mr-2"></i>Register Free
+        </a>
+        <a href="{AbsUrl}search/" class="btn-bl-outline bl-cta-btn">
+            Browse Profiles
+        </a>
     </div>
-</div>
-<div class="container">
-    <h2 class="text-center text-primary text-uppercase mt-3 heading">Success Stories</h2>
-    <div class="success-story" data-aos="fade-in">
-        <ul class="list-inline">
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}rakesh-binee.jpg" alt="Rakesh & Binee" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Rakesh &amp; Binee</h5>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}saswat-swati.jpg" alt="Saswat & Swati" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Saswat &amp; Swati</h5>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}subhransu-diptimayee.jpg" alt="Subhransu & Diptimayee" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Subhransu &amp; Diptimayee</h5>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}priyabrata-puspa.jpg" alt="Priyabrata & Puspa" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Priyabrata &amp; Puspa</h5>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}ratiranjan-monalisha.jpg" alt="Ratiranjan & Monalisha" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Ratiranjan &amp; Monalisha</h5>
-                </div>
-            </li>
-            <li class="list-inline-item">
-                <div class="card border-danger box-shadow" style="width: 250px">
-                    <img src="{ImgPath}rosy-asutosh.jpg" alt="Rosy & Asutosh" class="card-img-top">
-                    <h5 class="card-title text-info text-center my-2">Rosy &amp; Asutosh</h5>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+</section>
