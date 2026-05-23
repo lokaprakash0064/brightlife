@@ -31,6 +31,7 @@
     --bl-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --bl-radius:       12px;
     --bl-radius-pill:  50px;
+    --bl-footer-text:  #bdc3c7;
 }
 
 
@@ -289,6 +290,7 @@ body {
     border-radius: var(--bl-radius-pill);
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
     cursor: pointer;
     transition: var(--bl-transition);
     box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
@@ -303,12 +305,13 @@ body {
 
 .btn-bl-outline {
     display: inline-block;
-    padding: 10px 24px;
+    padding: 9px 24px;
     background-color: transparent;
     color: var(--bl-primary) !important;
     border: 2px solid var(--bl-primary);
     border-radius: var(--bl-radius-pill);
     font-weight: 600;
+    line-height: 1.5;
     cursor: pointer;
     transition: var(--bl-transition);
     text-decoration: none !important;
@@ -496,7 +499,7 @@ footer h5::after {
 
 footer p,
 footer .text-light {
-    color: #bdc3c7 !important;
+    color: var(--bl-footer-text) !important;
     font-size: 14px;
 }
 
@@ -505,7 +508,7 @@ footer .footer-links li {
 }
 
 footer .footer-links a {
-    color: #bdc3c7 !important;
+    color: var(--bl-footer-text) !important;
     font-size: 14px;
     transition: var(--bl-transition);
 }
@@ -537,7 +540,7 @@ footer .footer-copy a {
     display: flex;
     align-items: flex-start;
     margin-bottom: 14px;
-    color: #bdc3c7;
+    color: var(--bl-footer-text);
     font-size: 14px;
 }
 
@@ -604,8 +607,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   13. Hero Section (Phase 4 — home.html)
-   Defined here so it is ready when home.html content is redesigned.
+   13. Hero Section — home.html (Phase 3)
    ========================================================================== */
 
 .bl-hero {
@@ -683,6 +685,10 @@ footer .footer-copy a {
     margin-bottom: 18px;
 }
 
+.bl-search-form h3 i {
+    color: var(--bl-primary);
+}
+
 @media (max-width: 992px) {
     .bl-hero-content {
         flex-direction: column;
@@ -748,7 +754,7 @@ footer .footer-copy a {
 }
 
 #errModal .alert {
-    border-radius: 8px;
+    border-radius: var(--bl-radius);
     font-size: 14px;
     margin-bottom: 0;
 }
@@ -761,11 +767,6 @@ footer .footer-copy a {
    ========================================================================== */
 
 .form-control:focus {
-    border-color: var(--bl-primary) !important;
-    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.18) !important;
-}
-
-select.form-control:focus {
     border-color: var(--bl-primary) !important;
     box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.18) !important;
 }
@@ -786,11 +787,6 @@ select.form-control:focus {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-@keyframes bl-fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }
 
 .bl-anim-fadeInUp {
@@ -840,7 +836,6 @@ select.form-control:focus {
 .bl-director-img {
     border-radius: var(--bl-radius);
     box-shadow: var(--bl-shadow-hover);
-    object-fit: cover;
     max-height: 460px;
     width: 100%;
 }
@@ -901,4 +896,173 @@ select.form-control:focus {
         margin: 6px 0;
         text-align: center;
     }
+}
+
+
+/* ==========================================================================
+   19. Inner Content Pages — Shared Patterns
+   Used by about.html, contact-us.html, faq.html, package.html.
+   ========================================================================== */
+
+/* Page-level title banner — smaller counterpart to .bl-hero for inner pages */
+.bl-page-banner {
+    background: linear-gradient(135deg, var(--bl-secondary) 0%, #1a252f 100%);
+    color: var(--bl-white);
+    padding: 56px 0 40px;
+    text-align: center;
+}
+
+.bl-page-banner h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.bl-page-banner p {
+    font-size: 16px;
+    opacity: 0.75;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .bl-page-banner h1 {
+        font-size: 28px;
+    }
+}
+
+/*
+ * Generic content card — background + radius + shadow without the centring or
+ * hover-transform of .bl-feature-card. Used for form containers and prose blocks.
+ */
+.bl-card {
+    background: var(--bl-white);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    padding: 28px;
+}
+
+/* Package pricing card */
+.bl-package-card {
+    background: var(--bl-white);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    padding: 28px 22px;
+    height: 100%;
+    transition: var(--bl-transition);
+    border-top: 4px solid var(--bl-primary);
+}
+
+.bl-package-card:hover {
+    box-shadow: var(--bl-shadow-hover);
+    transform: translateY(-4px);
+}
+
+.bl-package-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bl-secondary);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+
+.bl-pkg-tier {
+    font-size: 14px;
+    color: var(--bl-text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 1.5;
+}
+
+.bl-pkg-tier:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.bl-pkg-tier .fa-rupee-sign {
+    color: var(--bl-primary);
+}
+
+/* Premium package — gradient highlight */
+.bl-package-card.bl-package-featured {
+    background: linear-gradient(135deg, var(--bl-primary) 0%, var(--bl-primary-dark) 100%);
+    border-top-color: rgba(255, 255, 255, 0.5);
+}
+
+.bl-package-card.bl-package-featured h4 {
+    color: var(--bl-white);
+}
+
+.bl-package-card.bl-package-featured .bl-pkg-tier {
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.bl-package-card.bl-package-featured .bl-pkg-tier .fa-rupee-sign {
+    color: var(--bl-white);
+}
+
+.bl-package-card.bl-package-featured p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/*
+ * FAQ accordion — scoped to .bl-faq-accordion so Bootstrap's default accordion
+ * card styling (white border, no radius) doesn't bleed into other components.
+ */
+.bl-faq-accordion .card {
+    border: none;
+    border-radius: var(--bl-radius) !important;
+    margin-bottom: 10px;
+    box-shadow: var(--bl-shadow);
+    overflow: hidden;
+}
+
+.bl-faq-accordion .card-header {
+    background: var(--bl-white);
+    border-bottom: none;
+    padding: 0;
+}
+
+.bl-faq-accordion .card-header .btn-link {
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--bl-secondary);
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.bl-faq-accordion .card-header .btn-link:hover,
+.bl-faq-accordion .card-header .btn-link:focus {
+    color: var(--bl-primary);
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.bl-faq-accordion .card-header .btn-link.collapsed {
+    color: var(--bl-text);
+}
+
+.bl-faq-accordion .card-header .btn-link i {
+    color: var(--bl-primary);
+}
+
+.bl-faq-accordion .card-body {
+    padding: 4px 20px 20px;
+    background: var(--bl-white);
+}
+
+.bl-faq-accordion .card-body ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.bl-faq-accordion .card-body ol li {
+    color: var(--bl-text-muted);
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.5;
 }

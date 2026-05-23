@@ -1,113 +1,134 @@
-<div class="inner-banner"></div>
-<div class="container pb-2">
-    <h2 class="text-center text-primary text-uppercase mt-2 heading">Contact Us</h2>
-    <p class="text-justify m-1" data-aos="fade-in">
-        <a href="{AbsUrl}">BrightlifeMatrimony.com</a> Offices are present in all major cities in Odisha. You may call us or walk into any of our offices in your locality to make payments or for any other assistance related to your partner search.
-    </p>
-    <div class="card-group" data-aos="fade-in">
-        <div class="card border-info bg-dark-grad">
-            <div class="card-body text-light">
-                <h4 class="text-center text-info heading">Bhubaneswar Address</h4>
-                <p class="text-justify mt-1">
-                    Plot no#459, Canara bank Lane Garage Chowk
-                </p>
-                <p class="text-justify mt-1">
-                    Bhubaneswar-751002
-                </p>
-                <p class="text-justify mt-1">
-                    <strong>Telephones : </strong><a href="tel:9238557572">9238557572</a>, <a href="tel:8763743931">8763743931</a>
-                </p>
-            </div>
+<!-- CONTACT US PAGE — Brightlife Matrimony v2 — Phase 4
+     Tokens used: AbsUrl
+     Form fields: name, mail, phn, msg
+     Form action: {AbsUrl}send-enquiry/ -->
+
+
+<!-- Page Banner -->
+<section class="bl-page-banner">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>We are here to help you at every step of your journey</p>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     Office Locations
+     Three .bl-feature-card offices — reuses existing card pattern.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Find Us</h2>
+            <p><a href="{AbsUrl}">BrightlifeMatrimony.com</a> offices are present in major cities across Odisha. Call us or walk in for payments and partner search assistance.</p>
         </div>
-        <div class="card border-info bg-dark-grad">
-            <div class="card-body text-light">
-                <h4 class="text-center text-info heading">Kendrapara Address</h4>
-                <p class="text-justify mt-1">
-                    Kendrapada market complex, Tinimuhani Chowk
-                </p>
-                <p class="text-justify mt-1">
-                    kendrapada - 754211
-                </p>
-                <p class="text-justify mt-1">
-                    <strong>Telephones : </strong><a href="tel:9337812040">9337812040</a>, <a href="tel:8763743931">8763743931</a>
-                </p>
+        <div class="row justify-content-center">
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-feature-card">
+                    <span class="bl-feature-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <h3>Bhubaneswar</h3>
+                    <p>Plot no#459, Canara Bank Lane, Garage Chowk</p>
+                    <p>Bhubaneswar &ndash; 751002</p>
+                    <p>
+                        <a href="tel:9238557572">9238557572</a> &nbsp;/&nbsp;
+                        <a href="tel:8763743931">8763743931</a>
+                    </p>
+                </div>
             </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-feature-card">
+                    <span class="bl-feature-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <h3>Kendrapara</h3>
+                    <p>Kendrapada Market Complex, Tinimuhani Chowk</p>
+                    <p>Kendrapada &ndash; 754211</p>
+                    <p>
+                        <a href="tel:9337812040">9337812040</a> &nbsp;/&nbsp;
+                        <a href="tel:8763743931">8763743931</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bl-feature-card">
+                    <span class="bl-feature-icon"><i class="fas fa-envelope"></i></span>
+                    <h3>E-mail</h3>
+                    <p><a href="mailto:brightlifematrimony@gmail.com">brightlifematrimony@gmail.com</a></p>
+                </div>
+            </div>
+
         </div>
-        <div class="card border-info bg-dark-grad">
-            <div class="card-body text-light">
-                <h4 class="text-center text-info heading">E-mail</h4>
-                <p class="text-justify mt-1">
-                    <a href="mailto:brightlifematrimony@gmail.com">brightlifematrimony@gmail.com</a>
-                </p>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     Enquiry Form
+     .bl-card (§19) used instead of .bl-feature-card because the form
+     requires left-aligned text — .bl-feature-card hardcodes text-center.
+     All field names preserved: name, mail, phn, msg.
+     Form action preserved: {AbsUrl}send-enquiry/
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Send Us a Message</h2>
+            <p>Leave your details and our team will reach out to you shortly</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9" data-aos="fade-up">
+                <div class="bl-card">
+                    <form class="needs-validation" novalidate="novalidate" method="post" action="{AbsUrl}send-enquiry/">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                                </div>
+                                <input class="form-control" name="name" id="name" type="text" placeholder="Your Full Name" required="required">
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter your full name</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                </div>
+                                <input class="form-control" name="mail" id="mail" type="email" placeholder="E-mail Address" required="required">
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter your e-mail address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                </div>
+                                <input class="form-control" name="phn" id="phn" type="text" placeholder="Phone Number" required="required">
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter your phone number</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                                </div>
+                                <textarea class="form-control" name="msg" id="msg" placeholder="Type your message" rows="4" required="required"></textarea>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter your message</div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn-bl-primary">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-8 offset-md-2">
-        <div class="card bg-dark-grad my-3" data-aos="fade-in">
-            <div class="card-body">
-                <h5 class="text-center text-danger heading">Please Leave Your Details So That We Can Reach You</h5>
-                <form class="needs-validation" novalidate="novalidate" method="post" action="{AbsUrl}send-enquiry/">
-                    <div class="col-12 my-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="nameprepend"><i class="fas fa-user-circle"></i></span>
-                            </div>
-                            <input class="form-control" name="name" id="name" type="text" placeholder="Name" required="required">
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter your full name
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="mailprepend"><i class="fas fa-at"></i></span>
-                            </div>
-                            <input class="form-control" name="mail" id="mail" type="email" placeholder="E-mail" required="required">
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter your e-mail Id
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="phnprepend"><i class="fas fa-mobile-alt"></i></span>
-                            </div>
-                            <input class="form-control" name="phn" id="phn" type="text" placeholder="Phone Number" required="required">
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter your Phone Number
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="msgprepend"><i class="fa fa-comment"></i></span>
-                            </div>
-                            <textarea class="form-control" name="msg" id="msg" placeholder="Type Your Message" required="required"></textarea>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter Your Message
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center my-2">
-                        <button type="submit" class="btn btn-danger">Send Query</button>
-                    </div>                                            
-                </form>
-            </div>            
-        </div>
-    </div>    
-</div>
+</section>

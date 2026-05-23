@@ -508,7 +508,6 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             getNotificationData($req[1]);
             break;
         case 'logout':
-            //redirectLogged($_SESSION['UID'], $_SESSION['USERNAME'] . ' Logged out', __FILE__);
             session_destroy();
             @session_start();
             $_SESSION['STATUS'] = 'info';
@@ -606,7 +605,6 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             savePartPrefAdmin($req[1]);
             break;
         case 'log-out':
-            //redirectLogged($_SESSION['UID'], $_SESSION['USERNAME'] . ' Logged out', __FILE__);
             session_destroy();
             @session_start();
             $_SESSION['STATUS'] = 'info';
@@ -633,26 +631,6 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             break;
     }
 } else {
-    /* $sql = 'select sign_up_id, pd_imgname, pd_dttm from bl_personal_detail';
-      $data = DbOperations::getObject()->fetchData($sql);
-      DbOperations::getObject()->transaction('start');
-      foreach ($data as $dat) {
-      DbOperations::getObject()->buildInsertQuery('bl_images');
-      $ins = [
-      null,
-      $dat['sign_up_id'],
-      $dat['pd_imgname'],
-      $dat['pd_dttm']
-      ];
-      $suc = DbOperations::getObject()->runQuery($ins);
-      }
-      if ($suc !== false) {
-      DbOperations::getObject()->transaction('on');
-      die('success');
-      } else {
-      DbOperations::getObject()->transaction('off');
-      die('unsuccess');
-      } */
     $replaceData = [
         'PageTitle' => 'Home - Brightlife Matrimony',
         'MetaKeys' => 'Matrimony website, Marriage in Odisha, Brightlife Matrimony',

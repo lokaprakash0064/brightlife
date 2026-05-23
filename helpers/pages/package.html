@@ -1,469 +1,261 @@
-<div class="inner-banner"></div>
-<div class="container pb-2">
-    <h2 class="text-center text-primary text-uppercase mt-2 heading">Our Packages</h2>
-    <div class="row pb-3">
-        <div class="card-group box-shadow" data-aos="fade-in">
-            <div class="card bg-dark-grad border-light">
-                <div class="card-body text-light">
-                    <h5 class="text-center text-info text-uppercase heading">Special Super</h5>
-                    <h6 class="text-danger heading">Package Validity:</h6>
-                    <p class="text-justify">
-                        7 Days
+<!-- PACKAGES PAGE — Brightlife Matrimony v2 — Phase 4
+     Token: {ImgPath} (package.jpg)
+     Modals: signupModal (defined in template.html)
+     Benefits table preserved verbatim — only wrapper and heading classes updated. -->
+
+
+<!-- Page Banner -->
+<section class="bl-page-banner">
+    <div class="container">
+        <h1>Our Packages</h1>
+        <p>Choose the plan that best fits your matchmaking journey</p>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     Membership Plans
+     5 package cards: Special Super, Better, Smarter, Topper, Premium.
+     .bl-package-card with top-border accent (§19).
+     Premium uses .bl-package-featured (gradient highlight).
+     Layout: col-md-6 col-lg-4 + justify-content-center so the 5th
+     card centres naturally on a 3-col row.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Membership Plans</h2>
+            <p>Flexible packages designed for every stage of your search</p>
+        </div>
+        <div class="row justify-content-center">
+
+            <!-- Special Super -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-package-card">
+                    <h4>Special Super</h4>
+                    <p class="text-muted small text-center mb-3">Validity: 7 Days</p>
+                    <div class="bl-pkg-tier">
+                        1 Profile &nbsp;<i class="fas fa-rupee-sign"></i> 99
+                    </div>
+                    <div class="bl-pkg-tier">
+                        10 Profiles within 1 day &nbsp;<i class="fas fa-rupee-sign"></i> 799
+                    </div>
+                    <p class="text-center text-muted small mt-3 mb-0">
+                        Contact: <a href="tel:8763743931">8763743931</a>
                     </p>
-                    <h6 class="text-danger heading">View Contacts:</h6>
-                    <p class="text-justify">
-                        1 Profile @ <i class="fas fa-rupee-sign"></i> 99<br>
-                        10 Profiles @ within 1 day @ <i class="fas fa-rupee-sign"></i> 799
+                </div>
+            </div>
+
+            <!-- Better -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-package-card">
+                    <h4>Better</h4>
+                    <div class="bl-pkg-tier">50 contacts &bull; 3 months &mdash; <i class="fas fa-rupee-sign"></i> 3,499</div>
+                    <div class="bl-pkg-tier">65 contacts &bull; 6 months &mdash; <i class="fas fa-rupee-sign"></i> 4,200</div>
+                    <div class="bl-pkg-tier">85 contacts &bull; 9 months &mdash; <i class="fas fa-rupee-sign"></i> 5,499</div>
+                </div>
+            </div>
+
+            <!-- Smarter -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="bl-package-card">
+                    <h4>Smarter</h4>
+                    <div class="bl-pkg-tier">60 contacts &bull; 3 months &mdash; <i class="fas fa-rupee-sign"></i> 3,999</div>
+                    <div class="bl-pkg-tier">75 contacts &bull; 6 months &mdash; <i class="fas fa-rupee-sign"></i> 5,200</div>
+                    <div class="bl-pkg-tier">95 contacts &bull; 9 months &mdash; <i class="fas fa-rupee-sign"></i> 6,500</div>
+                </div>
+            </div>
+
+            <!-- Topper -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="bl-package-card">
+                    <h4>Topper</h4>
+                    <div class="bl-pkg-tier">85 contacts &bull; 3 months &mdash; <i class="fas fa-rupee-sign"></i> 4,999</div>
+                    <div class="bl-pkg-tier">100 contacts &bull; 6 months &mdash; <i class="fas fa-rupee-sign"></i> 6,700</div>
+                    <div class="bl-pkg-tier">130 contacts &bull; 9 months &mdash; <i class="fas fa-rupee-sign"></i> 8,499</div>
+                </div>
+            </div>
+
+            <!-- Premium (featured) -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bl-package-card bl-package-featured">
+                    <h4>Premium</h4>
+                    <div class="bl-pkg-tier">
+                        16 profiles sent to your address + unlimited access for 2 months
+                    </div>
+                    <p class="text-center mt-3 mb-0">
+                        Starts from &nbsp;<i class="fas fa-rupee-sign"></i> 9,000
                     </p>
-                    <p>
-                        Please contact: <a href="8763743931">8763743931</a>
-                    </p>
                 </div>
             </div>
-            <div class="card bg-dark-grad border-light">
-                <div class="card-body">
-                    <h4 class="text-center text-info text-uppercase heading">Better</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            50 contacts for 3 months @ <i class="fas fa-rupee-sign"></i> 3499
-                        </li>
-                        <li class="list-group-item">
-                            65 contacts for 6 months @ <i class="fas fa-rupee-sign"></i> 4200
-                        </li>
-                        <li class="list-group-item">
-                            85 contacts for 9 months @ <i class="fas fa-rupee-sign"></i> 5499
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card bg-dark-grad border-light">
-                <div class="card-body">
-                    <h4 class="text-center text-info text-uppercase heading">Smarter</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            60 contacts for 3 months @ <i class="fas fa-rupee-sign"></i> 3999
-                        </li>
-                        <li class="list-group-item">
-                            75 contacts for 6 months @ <i class="fas fa-rupee-sign"></i> 5200
-                        </li>
-                        <li class="list-group-item">
-                            95 contacts for 9 months @ <i class="fas fa-rupee-sign"></i> 6500
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card bg-dark-grad border-light">
-                <div class="card-body">
-                    <h4 class="text-center text-info text-uppercase heading">Topper</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            85 contacts for 3 months @ <i class="fas fa-rupee-sign"></i> 4999
-                        </li>
-                        <li class="list-group-item">
-                            100 contacts for 6 months @ <i class="fas fa-rupee-sign"></i> 6700
-                        </li>
-                        <li class="list-group-item">
-                            130 contacts for 9 months @ <i class="fas fa-rupee-sign"></i> 8499
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card bg-dark-grad border-light">
-                <div class="card-body text-light">
-                    <h4 class="text-center text-info text-uppercase heading">Premium</h4>
-                    <p class="text-justify m-1">
-                        16 profiles will be sent to your address + unlimited access for 2 months
-                    </p>
-                    <cite class="text-warning">
-                        * Starts from <i class="fas fa-rupee-sign"></i> 9000
-                    </cite>
-                </div>
-            </div>
+
         </div>
     </div>
-    <div class="text-center pb-3" data-aos="fade-in">
-        <img src="{ImgPath}package.jpg" alt="Brightlife Matrimony Package" class="img-thumbnail box-shadow">
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     Package Image — {ImgPath} token preserved
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-4 bg-light text-center" data-aos="fade-up">
+    <div class="container">
+        <img src="{ImgPath}package.jpg" alt="Brightlife Matrimony Package" class="img-fluid rounded shadow">
     </div>
-    <h3 class="text-center text-info text-uppercase heading mt-2">Package Benifits</h3>
-    <table class="table table-bordered table-responsive-md" data-aos="fade-in">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="text-center">Packages</th>
-                <th scope="col" class="text-center">Better</th>
-                <th scope="col" class="text-center">Smarter</th>
-                <th scope="col" class="text-center">Topper</th>
-                <th scope="col" class="text-center">Premium</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Get perfect short listing profiles</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Profile tagged as &OpenCurlyDoubleQuote;Better&CloseCurlyDoubleQuote; member for better prominence</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Communicated to both parties with his / her own preferable choice profiles</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Send personalized messages</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Access verified mobile numbers</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Mediator coordinating offline services in locality</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Background verification with Employees and Employer with family backgrounds</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Arrange meeting for negotiation with prefer place</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Horoscope matching services</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Unlimited accesses personalized SMS and valuable high profiles</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Match your horoscope with other members&#039; horoscopes</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Personal Relationship Manager: Searches, Shortlists and contacts matching profiles on your behalf</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Priority in search results</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Customer support service</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Enhanced Privacy: Photo / Horoscope / Phone</th>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Profiles will be send to your address + unlimited access for 2 months</th>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-danger">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </td>
-                <td class="text-center">
-                    <span class="text-success">
-                        <i class="fas fa-check-circle"></i>
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     Package Benefits Table
+     All 15 rows and check/cross icons preserved exactly.
+     table-responsive-md on <table> → replaced with wrapping div.table-responsive
+     so the table scrolls horizontally on any small screen.
+     ───────────────────────────────────────────────────────────────── -->
+<section class="py-5">
+    <div class="container">
+        <div class="bl-section-title" data-aos="fade-up">
+            <h2>Package Benefits</h2>
+        </div>
+        <div class="table-responsive" data-aos="fade-up">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Features</th>
+                        <th scope="col" class="text-center">Better</th>
+                        <th scope="col" class="text-center">Smarter</th>
+                        <th scope="col" class="text-center">Topper</th>
+                        <th scope="col" class="text-center">Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Get perfect short listing profiles</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Profile tagged as &ldquo;Better&rdquo; member for better prominence</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Communicated to both parties with his / her own preferable choice profiles</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Send personalized messages</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Access verified mobile numbers</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mediator coordinating offline services in locality</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Background verification with Employees and Employer with family backgrounds</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Arrange meeting for negotiation with prefer place</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Horoscope matching services</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Unlimited accesses personalized SMS and valuable high profiles</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Match your horoscope with other members&#039; horoscopes</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Personal Relationship Manager: Searches, Shortlists and contacts matching profiles on your behalf</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Priority in search results</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Customer support service</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Enhanced Privacy: Photo / Horoscope / Phone</th>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Profiles will be sent to your address + unlimited access for 2 months</th>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-danger"><i class="fas fa-times-circle"></i></span></td>
+                        <td class="text-center"><span class="text-success"><i class="fas fa-check-circle"></i></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     CTA Strip
+     ───────────────────────────────────────────────────────────────── -->
+<section class="bl-cta text-center py-5" data-aos="fade-up">
+    <div class="container">
+        <h2>Ready to find your life partner?</h2>
+        <p>Register for free today and take the first step towards a beautiful future.</p>
+        <a href="#" data-toggle="modal" data-target="#signupModal" class="btn-bl-primary bl-cta-btn">
+            <i class="fas fa-user-plus mr-2"></i>Register Free
+        </a>
+        <a href="{AbsUrl}search/" class="btn-bl-outline bl-cta-btn">Browse Profiles</a>
+    </div>
+</section>
