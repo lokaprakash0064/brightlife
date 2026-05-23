@@ -36,9 +36,17 @@
                 window.scrollTo(0, 1);
             }
         </script>
+        <!-- Fonts: Poppins (v2 design system) -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Bootstrap 4 — required for DataTables Bootstrap theme and admin grid -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- DataTables — Bootstrap 4 theme; must load after Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+        <!-- Font Awesome 6 (backward-compatible with FA5 icon names used throughout) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <!-- Brightlife v2 design system — minimal impact on admin; scoped to .bg-dark-grad only -->
+        <link rel="stylesheet" href="{AbsUrl}helpers/css/brightlife-v2.css" type="text/css">
+        <!-- Page-specific CSS injected by assignTemplate() -->
         {CSSHelpers}
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -84,6 +92,8 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Brightlife v2 nav — scroll shadow targets .bg-pink only; neutral on admin .bg-dark-grad -->
+        <script src="{AbsUrl}helpers/js/brightlife-nav.js"></script>
         {JSHelpers}
         <script type="text/javascript">
             $(document).ready(function () {

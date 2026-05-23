@@ -19,7 +19,6 @@ if (!function_exists('loginUser')) {
 
     function loginUser() {
         $post = DataFilter::getObject()->cleanData($_POST);
-        //var_dump($post);exit;
         if (!isset($post['id']) or empty($post['id'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please Enter your E-mail Id / BL Id';

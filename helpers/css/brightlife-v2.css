@@ -1,0 +1,742 @@
+/**
+ * brightlife-v2.css
+ * Design system layer for Brightlife Matrimony redesign.
+ *
+ * ARCHITECTURE RULES:
+ * - All new classes are prefixed with `bl-` to avoid Bootstrap collision.
+ * - Bootstrap overrides are scoped to existing class selectors (e.g. `.navbar.bg-pink`)
+ *   so they only apply inside the existing Bootstrap component structure.
+ * - Global element selectors (body, footer) are used only for properties Bootstrap
+ *   does not control or where intentional override is required.
+ * - The Bootstrap grid, modal system, and utility classes are NOT modified.
+ * - This file loads AFTER Bootstrap CSS so cascade order is preserved.
+ */
+
+
+/* ==========================================================================
+   1. CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
+:root {
+    --bl-primary:      #e91e63;
+    --bl-primary-dark: #c2185b;
+    --bl-secondary:    #2c3e50;
+    --bl-accent:       #3498db;
+    --bl-white:        #ffffff;
+    --bl-text:         #333333;
+    --bl-text-muted:   #7f8c8d;
+    --bl-light-bg:     #f8f9fa;
+    --bl-shadow:       0 4px 15px rgba(0, 0, 0, 0.08);
+    --bl-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.13);
+    --bl-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bl-radius:       12px;
+    --bl-radius-pill:  50px;
+}
+
+
+/* ==========================================================================
+   2. Base Typography
+   Bootstrap sets body font-family. We extend it with Poppins here.
+   Josefin Sans and Audiowide (used by style.css headings) are preserved.
+   ========================================================================== */
+
+body {
+    font-family: 'Poppins', 'Josefin Sans', Arial, sans-serif;
+    color: var(--bl-text);
+    line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   3. Top Bar (.head-top)
+   Scoped to `.head-top` — Bootstrap grid row inside it is untouched.
+   ========================================================================== */
+
+.head-top {
+    background-color: var(--bl-secondary) !important;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+.head-top a.btn {
+    font-size: 12px;
+    border-radius: var(--bl-radius-pill);
+    padding: 5px 16px;
+    transition: var(--bl-transition);
+}
+
+@media (max-width: 768px) {
+    /* Hide top bar on mobile — mirrors example.html top-bar hiding */
+    .head-top {
+        display: none;
+    }
+}
+
+
+/* ==========================================================================
+   4. Navbar (.navbar.bg-pink)
+   Scoped strictly to `.navbar.bg-pink` — Bootstrap's other `.navbar`
+   variants (e.g. `.navbar-dark`, `.bg-dark-grad` on admin) are unaffected.
+   Bootstrap collapse mechanism and toggler are untouched.
+   ========================================================================== */
+
+.navbar.bg-pink {
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--bl-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1030; /* Bootstrap's navbar z-index value — kept consistent */
+    transition: var(--bl-transition);
+}
+
+/* Nav link color and weight */
+.navbar.bg-pink .navbar-nav .nav-link {
+    color: var(--bl-secondary) !important;
+    font-weight: 600;
+    font-size: 15px;
+    position: relative;
+    padding-bottom: 6px !important;
+    transition: var(--bl-transition);
+}
+
+.navbar.bg-pink .navbar-nav .nav-link:hover,
+.navbar.bg-pink .navbar-nav .nav-item.active > .nav-link {
+    color: var(--bl-primary) !important;
+}
+
+/*
+ * Underline hover effect — desktop only.
+ *
+ * IMPORTANT: :not(.dropdown-toggle) is mandatory here.
+ * Bootstrap 4 renders the dropdown caret on .dropdown-toggle elements using
+ * ::after with border-top/border-right/border-left CSS triangle tricks.
+ * Our rule previously matched ALL .nav-link::after, including dropdowns.
+ * On hover, expanding `width` to calc(100% - 1rem) turned Bootstrap's tiny
+ * CSS triangle into a large filled trapezoid (the pink rectangular block).
+ *
+ * Fix: scope to :not(.dropdown-toggle) so Bootstrap's caret is never touched.
+ * The dropdown toggle keeps its Bootstrap ::after (the caret arrow) untouched.
+ */
+.navbar.bg-pink .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+    content: '';
+    position: absolute;          /* Required: taken out of flow so it sits under the text */
+    bottom: 0;
+    left: 0.5rem;
+    width: 0;
+    height: 2px;
+    background: var(--bl-primary); /* Required: gives the underline its color */
+    transition: var(--bl-transition);
+}
+
+.navbar.bg-pink .navbar-nav .nav-link:not(.dropdown-toggle):hover::after {
+    width: calc(100% - 1rem);
+}
+
+/*
+ * Explicitly restore Bootstrap's dropdown caret for safety.
+ * Bootstrap sets these on .dropdown-toggle::after. We list them here so
+ * that even if cascade order shifts in the future, the caret is never broken.
+ */
+.navbar.bg-pink .navbar-nav .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    /* Reset properties that the underline rule would have set */
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    transition: none;
+}
+
+/* Dropdown menu styling */
+.navbar.bg-pink .dropdown-menu {
+    border: none;
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    margin-top: 8px;
+}
+
+.navbar.bg-pink .dropdown-item {
+    font-weight: 500;
+    transition: var(--bl-transition);
+    color: var(--bl-secondary);
+}
+
+.navbar.bg-pink .dropdown-item:hover {
+    background-color: rgba(233, 30, 99, 0.07);
+    color: var(--bl-primary);
+}
+
+/* Bootstrap navbar toggler icon color update */
+.navbar.bg-pink .navbar-toggler {
+    border-color: rgba(44, 62, 80, 0.3);
+}
+
+.navbar.bg-pink .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(44, 62, 80, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Remove underline animation on mobile — not useful in collapsed mode */
+@media (max-width: 991px) {
+    /* Must match the narrowed selector to correctly override the desktop rule */
+    .navbar.bg-pink .navbar-nav .nav-link:not(.dropdown-toggle)::after {
+        display: none;
+    }
+
+    .navbar.bg-pink .navbar-collapse {
+        background: var(--bl-white);
+        border-top: 1px solid #f0f0f0;
+        padding: 10px 0;
+        border-radius: 0 0 var(--bl-radius) var(--bl-radius);
+    }
+}
+
+
+/* ==========================================================================
+   5. Logo
+   Keeps the existing .img-logo Bootstrap class — adds subtle animation.
+   ========================================================================== */
+
+.navbar-brand .img-logo {
+    transition: var(--bl-transition);
+}
+
+.navbar-brand:hover .img-logo {
+    transform: scale(1.04);
+}
+
+
+/* ==========================================================================
+   6. Buttons
+   New `.btn-bl-*` classes that do NOT override Bootstrap's `.btn-*` system.
+   Use these for new design pill-style buttons in page content.
+   ========================================================================== */
+
+.btn-bl-primary {
+    display: inline-block;
+    padding: 11px 26px;
+    background-color: var(--bl-primary);
+    color: var(--bl-white) !important;
+    border: none;
+    border-radius: var(--bl-radius-pill);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: var(--bl-transition);
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+    text-decoration: none !important;
+}
+
+.btn-bl-primary:hover {
+    background-color: var(--bl-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(233, 30, 99, 0.35);
+}
+
+.btn-bl-outline {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: transparent;
+    color: var(--bl-primary) !important;
+    border: 2px solid var(--bl-primary);
+    border-radius: var(--bl-radius-pill);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--bl-transition);
+    text-decoration: none !important;
+}
+
+.btn-bl-outline:hover {
+    background-color: var(--bl-primary);
+    color: var(--bl-white) !important;
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   7. Section Titles (reusable utility class)
+   `.bl-section-title` — new class name, no Bootstrap conflict.
+   ========================================================================== */
+
+.bl-section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--bl-secondary);
+}
+
+.bl-section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.bl-section-title p {
+    color: var(--bl-text-muted);
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+@media (max-width: 576px) {
+    .bl-section-title h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* ==========================================================================
+   8. Feature Cards
+   All new `.bl-` prefixed classes — no Bootstrap conflict.
+   ========================================================================== */
+
+.bl-feature-card {
+    background-color: var(--bl-white);
+    padding: 30px 25px;
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    text-align: center;
+    transition: var(--bl-transition);
+    height: 100%;
+}
+
+.bl-feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--bl-shadow-hover);
+}
+
+.bl-feature-icon {
+    font-size: 42px;
+    color: var(--bl-accent);
+    margin-bottom: 18px;
+    display: block;
+}
+
+.bl-feature-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--bl-secondary);
+    margin-bottom: 12px;
+}
+
+.bl-feature-card p {
+    color: var(--bl-text-muted);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   9. Story / Profile Cards
+   ========================================================================== */
+
+.bl-story-card {
+    border-radius: var(--bl-radius);
+    overflow: hidden;
+    box-shadow: var(--bl-shadow);
+    transition: var(--bl-transition);
+    background: var(--bl-white);
+}
+
+.bl-story-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--bl-shadow-hover);
+}
+
+.bl-story-img {
+    height: 220px;
+    overflow: hidden;
+}
+
+.bl-story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bl-story-card:hover .bl-story-img img {
+    transform: scale(1.08);
+}
+
+.bl-story-info {
+    padding: 18px 20px;
+    text-align: center;
+}
+
+.bl-story-info h3 {
+    color: var(--bl-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.bl-story-info p {
+    color: var(--bl-text-muted);
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   10. Generic Card Hover Utility
+   Works alongside Bootstrap `.card` — adds hover lift.
+   ========================================================================== */
+
+.bl-card-hover {
+    transition: var(--bl-transition);
+}
+
+.bl-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--bl-shadow-hover) !important;
+}
+
+
+/* ==========================================================================
+   11. Footer
+   Scoped to the `footer` element. The Bootstrap grid (.row, .col-md-*)
+   inside the footer is preserved — only colors and spacing are changed.
+   `.footer-links` class is already in template.html — this extends its style.
+   `.footer-copy` class is already in the existing template — this reskins it.
+   ========================================================================== */
+
+footer {
+    background-color: var(--bl-secondary) !important;
+    color: var(--bl-white);
+    padding-top: 55px;
+    padding-bottom: 0;
+}
+
+footer h5 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bl-white) !important;
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+footer h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 38px;
+    height: 2px;
+    background-color: var(--bl-primary);
+}
+
+footer p,
+footer .text-light {
+    color: #bdc3c7 !important;
+    font-size: 14px;
+}
+
+footer .footer-links li {
+    margin-bottom: 9px;
+}
+
+footer .footer-links a {
+    color: #bdc3c7 !important;
+    font-size: 14px;
+    transition: var(--bl-transition);
+}
+
+footer .footer-links a:hover {
+    color: var(--bl-primary) !important;
+    padding-left: 4px;
+}
+
+/* Footer bottom bar */
+footer .footer-copy {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding: 14px 0;
+}
+
+footer .footer-copy p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+footer .footer-copy a {
+    color: var(--bl-primary) !important;
+}
+
+/* Footer contact info layout (for Phase 3 footer content) */
+.bl-contact-info {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    color: #bdc3c7;
+    font-size: 14px;
+}
+
+.bl-contact-icon {
+    color: var(--bl-accent);
+    margin-right: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Social links in footer */
+.bl-social-links a {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--bl-white) !important;
+    margin-right: 8px;
+    transition: var(--bl-transition);
+    font-size: 14px;
+}
+
+.bl-social-links a:hover {
+    background: var(--bl-primary);
+    transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   12. Mobile Navigation (Phase 2 forward)
+   These rules activate only when the new `.bl-nav-links` element exists.
+   Currently dormant — Bootstrap's existing navbar handles mobile in Phase 1.
+   ========================================================================== */
+
+.bl-nav-links {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .bl-nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--bl-white);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 30px 20px;
+        transition: right 0.3s ease;
+        z-index: 1025;
+        border-top: 1px solid #eee;
+        overflow-y: auto;
+    }
+
+    .bl-nav-links.active {
+        right: 0;
+    }
+}
+
+
+/* ==========================================================================
+   13. Hero Section (Phase 4 — home.html)
+   Defined here so it is ready when home.html content is redesigned.
+   ========================================================================== */
+
+.bl-hero {
+    position: relative;
+    min-height: 88vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--bl-white);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bl-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.28) 100%
+    );
+    z-index: 1;
+}
+
+.bl-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+    padding: 60px 0;
+}
+
+.bl-hero-text {
+    flex: 1;
+    max-width: 620px;
+}
+
+.bl-hero-text h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.bl-hero-text p {
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 35px;
+}
+
+/* Hero quick-search form card */
+.bl-search-form {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
+}
+
+.bl-search-form h3 {
+    color: var(--bl-secondary);
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+@media (max-width: 992px) {
+    .bl-hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bl-hero-text {
+        max-width: 100%;
+    }
+
+    .bl-search-form {
+        max-width: 480px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .bl-hero {
+        min-height: auto;
+    }
+
+    .bl-hero-text h1 {
+        font-size: 34px;
+    }
+
+    .bl-hero-text p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .bl-hero-text h1 {
+        font-size: 28px;
+    }
+}
+
+
+/* ==========================================================================
+   14. Admin Panel (.bg-dark-grad navbar)
+   Minimal enhancement — only font and nav link transition are changed.
+   DataTables, Bootstrap grid, and all admin functionality are untouched.
+   ========================================================================== */
+
+.navbar.bg-dark-grad .nav-link {
+    transition: var(--bl-transition);
+}
+
+.navbar.bg-dark-grad .nav-link:hover {
+    opacity: 0.85;
+}
+
+
+/* ==========================================================================
+   15. Flash Message Modal (existing #errModal)
+   Slight visual enhancement — scoped to #errModal only.
+   Bootstrap modal behavior (JS, backdrop, aria) is completely unchanged.
+   ========================================================================== */
+
+#errModal .modal-content {
+    border: none;
+    border-radius: var(--bl-radius);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+#errModal .alert {
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   16. Form Controls — Subtle Enhancement
+   Only affects focus ring color. Does NOT override Bootstrap's form layout,
+   sizing, or validation state classes (.is-valid, .is-invalid).
+   ========================================================================== */
+
+.form-control:focus {
+    border-color: var(--bl-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.18) !important;
+}
+
+select.form-control:focus {
+    border-color: var(--bl-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.18) !important;
+}
+
+
+/* ==========================================================================
+   17. Keyframe Animations (from example.html)
+   Defined here for use in page content. AOS is still used for
+   scroll-triggered animations; these are for entry animations.
+   ========================================================================== */
+
+@keyframes bl-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bl-fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.bl-anim-fadeInUp {
+    animation: bl-fadeInUp 0.7s ease-out both;
+}
+
+.bl-anim-delay-1 { animation-delay: 0.15s; }
+.bl-anim-delay-2 { animation-delay: 0.30s; }
+.bl-anim-delay-3 { animation-delay: 0.45s; }
