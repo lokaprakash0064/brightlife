@@ -573,40 +573,6 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   12. Mobile Navigation (Phase 2 forward)
-   These rules activate only when the new `.bl-nav-links` element exists.
-   Currently dormant — Bootstrap's existing navbar handles mobile in Phase 1.
-   ========================================================================== */
-
-.bl-nav-links {
-    display: flex;
-    align-items: center;
-}
-
-@media (max-width: 768px) {
-    .bl-nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--bl-white);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 30px 20px;
-        transition: right 0.3s ease;
-        z-index: 1025;
-        border-top: 1px solid #eee;
-        overflow-y: auto;
-    }
-
-    .bl-nav-links.active {
-        right: 0;
-    }
-}
-
-
-/* ==========================================================================
    13. Hero Section — home.html (Phase 3)
    ========================================================================== */
 
