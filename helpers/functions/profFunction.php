@@ -336,7 +336,7 @@ if (!function_exists('searchProf')) {
                 . ' order by su_dttm desc';
         $suData = DbOperations::getObject()->fetchData($suSql, [$post['caste'], $post['rel'], $fnDate1, $fnDate2, $post['gender']]);
         if ((count($suData) < 1) or ! isset($suData)) {
-            $profData .= '<div class="container"><h4 class="text-center text-danger">No match found!</h4></div>';
+            $profData .= '<div class="col-12"><p class="bl-search-no-results">No profiles found matching your search criteria.</p></div>';
         } else {
             foreach ($suData as $data) {
                 $sql = 'select img_name, pd_height, pd_maritalStatus, state_name, pd_residingCity, '
@@ -396,20 +396,16 @@ if (!function_exists('searchProf')) {
                         $profCreatedBy .= 'Friend';
                         break;
                 }
-                $profData .= '<div class="col-md-6 mt-3">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <img src="' . ACCESS_URL . 'helpers/images/uploads/' . ((count($perData) > 0) ? $perData[0]['img_name'] : '') . '" class="img-fluid" alt=" " style="max-height: 255px;max-width: 251px">
+                $profData .= '<div class="col-lg-6 mb-4">
+                                <div class="bl-search-card">
+                                    <div class="bl-search-card-photo">
+                                        <img src="' . ACCESS_URL . 'helpers/images/uploads/' . ((count($perData) > 0) ? $perData[0]['img_name'] : '') . '" alt=" ">
                                     </div>
-                                    <div class="col-md-6">
-                                        <h5 class="text-danger">' . ((count($cusData) > 0) ? $cusData[0]['pp_cust_id'] : '') . '</h5>
-                                        <p class="text-justify">
-                                            ' . $perData[0]['pd_residingCity'] . ', ' . round(((($age / 3600) / 24) / 365)) . ' Yrs, ' . ((count($perData) > 0) ? $perData[0]['pd_height'] : '') . ', ' . $data['rel_name'] . '
-                                        </p>
-                                        <p class="text-justify">
-                                            ' . $perData[0]['edu_name'] . ', ' . $perData[0]['occ_name'] . '
-                                        </p>
-                                        <a href="' . ACCESS_URL . 'view-profile/' . ((count($cusData) > 0) ? $cusData[0]['pp_cust_id'] . '/' : '') . '" class="btn btn-danger">View Profile</a>
+                                    <div class="bl-search-card-info">
+                                        <div class="bl-search-card-id">' . ((count($cusData) > 0) ? $cusData[0]['pp_cust_id'] : '') . '</div>
+                                        <div class="bl-search-card-summary">' . $perData[0]['pd_residingCity'] . ', ' . round(((($age / 3600) / 24) / 365)) . ' Yrs, ' . ((count($perData) > 0) ? $perData[0]['pd_height'] : '') . ', ' . $data['rel_name'] . '</div>
+                                        <div class="bl-search-card-summary">' . $perData[0]['edu_name'] . ', ' . $perData[0]['occ_name'] . '</div>
+                                        <a href="' . ACCESS_URL . 'view-profile/' . ((count($cusData) > 0) ? $cusData[0]['pp_cust_id'] . '/' : '') . '" class="btn btn-outline-danger btn-sm bl-search-card-btn">View Profile</a>
                                     </div>
                                 </div>
                             </div>';
