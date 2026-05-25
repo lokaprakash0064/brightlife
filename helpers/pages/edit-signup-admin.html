@@ -1,65 +1,73 @@
-<div class="col-md-8 offset-md-2">
-    <div class="card my-4">
-        <div class="card-body">
-            <h4 class="text-center text-danger heading">Signup Data of {Name}</h4>
-            <form method="post" action="{AbsUrl}save-signup-admin/{cId}/">
-                <div class="form-group">
-                    <label for="name" class="col-12 text-info">Name</label>
-                    <div class="col-12">
-                        <input type="text" name="name" id="name" class="form-control" value="{Name}" required="required">
-                    </div>
+<div class="ba-admin-layout">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card ba-form-card">
+                <div class="card-body">
+                    <h4 class="ba-form-section">Signup Data of {Name}</h4>
+                    <form method="post" action="{AbsUrl}save-signup-admin/{cId}/">
+                        <div class="form-group">
+                            <label for="name" class="text-info">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{Name}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob" class="text-info">Date of Birth</label>
+                            <input type="text" name="dob" id="dob" class="form-control" value="{DOB}" required="required" placeholder="DD-MM-YYYY">
+                        </div>
+                        <div class="form-group">
+                            {Gender}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rel" class="text-info">Religion</label>
+                                    <select class="form-control" name="rel" id="rel">
+                                        {religion}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="caste" class="text-info">Caste</label>
+                                    <select class="form-control" name="caste" id="caste">
+                                        {caste}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mob" class="text-info">Mobile Number</label>
+                                    <input type="text" name="mob" id="mob" class="form-control" value="{mobNo}" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mail" class="text-info">E-mail</label>
+                                    <input type="email" name="mail" id="mail" class="form-control" value="{email}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pass" class="text-info">New Password</label>
+                                    <input type="password" name="pass" id="pass" class="form-control" placeholder="Type New Password" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rpass" class="text-info">Retype Password</label>
+                                    <input type="password" name="rpass" id="rpass" class="form-control" placeholder="Retype Password" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-danger" type="submit">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="dob" class="col-12 text-info">Date of Birth</label>
-                    <div class="col-12">
-                        <input type="text" name="dob" id="dob" class="form-control" value="{DOB}" required="required" placeholder="DD-MM-YYYY">
-                    </div>
-                </div>
-                {Gender}
-                <div class="form-group">
-                    <label for="rel" class="col-12 text-info">Religion</label>
-                    <div class="col-12">
-                        <select class="form-control" name="rel" id="rel">
-                            {religion}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="caste" class="col-12 text-info">Caste</label>
-                    <div class="col-12">
-                        <select class="form-control" name="caste" id="caste">
-                            {caste}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="mob" class="col-12 text-info">Mobile Number</label>
-                    <div class="col-12">
-                        <input type="text" name="mob" id="mob" class="form-control" value="{mobNo}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="mail" class="col-12 text-info">E-mail</label>
-                    <div class="col-12">
-                        <input type="email" name="mail" id="mail" class="form-control" value="{email}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="pass" class="col-12 text-info">New Password</label>
-                    <div class="col-12">
-                        <input type="password" name="pass" id="pass" class="form-control" placeholder="Type New Password" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="rpass" class="col-12 text-info">Retype Password</label>
-                    <div class="col-12">
-                        <input type="password" name="rpass" id="rpass" class="form-control" placeholder="Retype Password" required="required">
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-danger" type="submit">Save</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
