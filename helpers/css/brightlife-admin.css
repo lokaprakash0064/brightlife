@@ -1,0 +1,227 @@
+/*
+ * Brightlife Admin Design System — brightlife-admin.css
+ *
+ * LOAD ORDER DEPENDENCY:
+ *   This file must load AFTER brightlife-v2.css (guaranteed by adminTpl.html
+ *   which hardcodes brightlife-v2.css before {CSSHelpers}).
+ *   All --bl-* tokens defined in brightlife-v2.css are available here.
+ *   Never redefine --bl-* tokens in this file.
+ *
+ * PREFIX CONVENTION:
+ *   --ba-*  Admin-only CSS custom properties
+ *   .ba-*   Admin-only component classes
+ *   .bg-theme1  Shared error modal class (defined here for all templates)
+ *
+ * DATATABLES CONTRACT:
+ *   Do NOT style .dataTables_wrapper, .dataTables_filter, .dataTables_paginate,
+ *   .dataTables_info, or .dataTables_length in this file.
+ *   These are DataTables 1.10.20 generated selectors — styling them is reserved
+ *   for a dedicated DataTables redesign phase.
+ *   Only the outer .ba-data-panel wrapper is scoped here.
+ *
+ * BOOTSTRAP 4 CONTRACT:
+ *   Do NOT override Bootstrap base classes (.card, .table, .form-control, etc.)
+ *   globally. Use .ba-* scoped selectors for admin-specific overrides.
+ *
+ * PHASE PLAN:
+ *   Phase A (current): Foundation layer — tokens, .bg-theme1, component stubs.
+ *   Phase B: Apply .ba-form-card to edit-signup-admin.html.
+ *   Phase C: Extend .ba-form-card to edit-prof-admin.html and edit-part-pref-admin.html.
+ *   Phase D: DataTables internals redesign (view-admin-data.html).
+ */
+
+/* ==========================================================================
+   1. Admin-Specific Tokens
+   References --bl-* from brightlife-v2.css. Only --ba-* tokens are defined here.
+   ========================================================================== */
+
+:root {
+    --ba-label-color:      var(--bl-accent);       /* Form labels (replaces .text-info) */
+    --ba-card-accent:      var(--bl-secondary);    /* CRUD card header stripe */
+    --ba-table-stripe:     rgba(0, 0, 0, 0.04);   /* DataTable row alternation (Phase D) */
+    --ba-action-hover:     var(--bl-primary-dark); /* Action dropdown hover state */
+    --ba-form-radius:      var(--bl-radius);       /* Consistent with member-facing forms */
+    --ba-modal-dark:       var(--bl-dark-card);    /* Error modal background */
+}
+
+
+/* ==========================================================================
+   2. Shared Ghost-Class Fix — .bg-theme1
+   Used in adminTpl.html, loginTpl.html, logTemplate.html, and template.html.
+   Previously undefined — modals rendered white. Now aligned with dark card system.
+   ========================================================================== */
+
+.bg-theme1 {
+    background: var(--ba-modal-dark);
+    color: var(--bl-white);
+}
+
+.bg-theme1 .modal-header {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.bg-theme1 .close {
+    color: var(--bl-white);
+    opacity: 0.75;
+}
+
+.bg-theme1 .close:hover {
+    opacity: 1;
+}
+
+
+/* ==========================================================================
+   3. Admin Navbar (.bg-dark-grad)
+   .bg-dark-grad background is defined in style.min.css (legacy horizontal gradient).
+   Only add admin-specific nav enhancements here — do not redefine the gradient.
+   The nav-link transition is already in brightlife-v2.css section 13.
+   ========================================================================== */
+
+.navbar.bg-dark-grad {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.navbar.bg-dark-grad .navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--bl-white);
+}
+
+
+/* ==========================================================================
+   4. Admin Page Layout
+   ========================================================================== */
+
+.ba-admin-layout {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    min-height: calc(100vh - 56px);
+}
+
+
+/* ==========================================================================
+   5. DataTable Panel Wrapper
+   Wraps the #example table and its DataTables-generated scaffold.
+   Do NOT target DataTables internal selectors inside this block.
+   ========================================================================== */
+
+.ba-data-panel {
+    background: var(--bl-white);
+    border-radius: var(--ba-form-radius);
+    box-shadow: var(--bl-shadow);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+}
+
+
+/* ==========================================================================
+   6. Admin CRUD Form Card (.ba-form-card)
+   Replaces the bare Bootstrap .card used in all three edit-*-admin.html pages.
+   Applied during Phase B/C redesign — not yet active on admin HTML templates.
+   ========================================================================== */
+
+.ba-form-card {
+    border: none;
+    border-radius: var(--ba-form-radius);
+    box-shadow: var(--bl-shadow-hover);
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.ba-form-card .card-body {
+    padding: 2rem;
+}
+
+.ba-form-card .ba-form-section {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bl-primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(233, 30, 99, 0.12);
+}
+
+.ba-form-card .form-group label {
+    color: var(--ba-label-color);
+    font-weight: 500;
+}
+
+.ba-form-card .form-control {
+    border-radius: calc(var(--ba-form-radius) / 2);
+    border-color: #dee2e6;
+    transition: var(--bl-transition);
+}
+
+.ba-form-card .form-control:focus {
+    border-color: var(--bl-accent);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.2);
+}
+
+.ba-form-card .btn-danger {
+    padding: 0.5rem 2.5rem;
+    border-radius: var(--bl-radius-pill);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--bl-transition);
+}
+
+
+/* ==========================================================================
+   7. Admin Action Dropdown (.ba-action-btn)
+   Replaces .btn-light .dropdown-toggle in DataTable action column (Phase D).
+   Defined here to establish the pattern; wired in during Phase D only.
+   ========================================================================== */
+
+.ba-action-btn {
+    background: transparent;
+    border: 1px solid var(--bl-text-muted);
+    color: var(--bl-text);
+    border-radius: var(--bl-radius-pill);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    transition: var(--bl-transition);
+}
+
+.ba-action-btn:hover,
+.ba-action-btn:focus {
+    background: var(--bl-primary);
+    border-color: var(--bl-primary);
+    color: var(--bl-white);
+}
+
+.ba-action-btn + .dropdown-menu {
+    border-radius: var(--ba-form-radius);
+    border: none;
+    box-shadow: var(--bl-shadow-hover);
+    min-width: 200px;
+}
+
+.ba-action-btn + .dropdown-menu .dropdown-item {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    transition: var(--bl-transition);
+}
+
+.ba-action-btn + .dropdown-menu .dropdown-item:hover {
+    background: rgba(233, 30, 99, 0.07);
+    color: var(--bl-primary);
+}
+
+
+/* ==========================================================================
+   8. Responsive Overrides
+   ========================================================================== */
+
+@media (max-width: 767.98px) {
+    .ba-form-card .card-body {
+        padding: 1.25rem;
+    }
+
+    .ba-data-panel {
+        padding: 0.75rem;
+    }
+}

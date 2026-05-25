@@ -570,7 +570,7 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
                 'PageTitle' => 'Brightlife Matrimony - Admin Page',
                 'MetaKeys' => '',
                 'MetaDesc' => '',
-                'CSSHelpers' => ['style.min.css'],
+                'CSSHelpers' => ['style.min.css', 'brightlife-admin.css'],
                 'JSHelpers' => ['script.js'],
                 'Contents' => file_get_contents(PGS_DIR . DS . 'view-admin-data.html')
             ];

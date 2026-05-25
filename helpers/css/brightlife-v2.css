@@ -32,6 +32,7 @@
     --bl-radius:       12px;
     --bl-radius-pill:  50px;
     --bl-footer-text:  #bdc3c7;
+    --bl-dark-card:    linear-gradient(160deg, #2c3e50 0%, #1a252f 100%);
 }
 
 
@@ -64,7 +65,7 @@ body {
  * Uses inline-flex so the FA icon and text align on the same baseline.
  */
 .bl-topbar-phone {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: rgba(0, 0, 0, 0.85) !important;
     text-decoration: none !important;
     display: inline-flex;
     align-items: center;
@@ -573,7 +574,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   13. Hero Section — home.html (Phase 3)
+   12. Hero Section — home.html (Phase 3)
    ========================================================================== */
 
 .bl-hero {
@@ -693,7 +694,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   14. Admin Panel (.bg-dark-grad navbar)
+   13. Admin Panel (.bg-dark-grad navbar)
    Minimal enhancement — only font and nav link transition are changed.
    DataTables, Bootstrap grid, and all admin functionality are untouched.
    ========================================================================== */
@@ -708,7 +709,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   15. Flash Message Modal (existing #errModal)
+   14. Flash Message Modal (existing #errModal)
    Slight visual enhancement — scoped to #errModal only.
    Bootstrap modal behavior (JS, backdrop, aria) is completely unchanged.
    ========================================================================== */
@@ -727,7 +728,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   16. Form Controls — Subtle Enhancement
+   15. Form Controls — Subtle Enhancement
    Only affects focus ring color. Does NOT override Bootstrap's form layout,
    sizing, or validation state classes (.is-valid, .is-invalid).
    ========================================================================== */
@@ -739,7 +740,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   17. Keyframe Animations (from example.html)
+   16. Keyframe Animations (from example.html)
    Defined here for use in page content. AOS is still used for
    scroll-triggered animations; these are for entry animations.
    ========================================================================== */
@@ -765,7 +766,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   18. Homepage Sections — Phase 3
+   17. Homepage Sections — Phase 3
    New classes introduced by home.html Phase 3 redesign.
    All prefixed bl- to avoid Bootstrap collision.
    ========================================================================== */
@@ -866,7 +867,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   19. Inner Content Pages — Shared Patterns
+   18. Inner Content Pages — Shared Patterns
    Used by about.html, contact-us.html, faq.html, package.html.
    ========================================================================== */
 
@@ -1035,7 +1036,7 @@ footer .footer-copy a {
 
 
 /* ==========================================================================
-   20. Authenticated Dashboard — User Profile
+   19. Authenticated Dashboard — User Profile
    ========================================================================== */
 
 /* Page wrapper — sits over .bg-grad gradient, giving redesigned pages a clean bg */
@@ -1047,7 +1048,7 @@ footer .footer-copy a {
 
 /* ---- Sidebar (dark card) ---- */
 .bl-profile-sidebar {
-    background: linear-gradient(160deg, #2c3e50 0%, #1a252f 100%);
+    background: var(--bl-dark-card);
     border-radius: var(--bl-radius);
     box-shadow: var(--bl-shadow-hover);
     overflow: hidden;
@@ -1112,7 +1113,7 @@ footer .footer-copy a {
 .bl-profile-stat-value {
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--bl-white);
     line-height: 1.4;
     overflow-wrap: anywhere;
     min-width: 0;
@@ -1274,10 +1275,9 @@ footer .footer-copy a {
     }
 }
 
-/* ================================================================
-   Search result cards
-   Used by: search-profile.html / searchProf()
-   ================================================================ */
+/* ==========================================================================
+   20. Search Profile Cards — search-profile.html / searchProf()
+   ========================================================================== */
 .bl-search-results-heading {
     font-size: 16px;
     font-weight: 700;
@@ -1291,7 +1291,7 @@ footer .footer-copy a {
 
 .bl-search-card {
     display: flex;
-    background: linear-gradient(160deg, #2c3e50 0%, #1a252f 100%);
+    background: var(--bl-dark-card);
     border-radius: var(--bl-radius);
     box-shadow: var(--bl-shadow);
     overflow: hidden;
