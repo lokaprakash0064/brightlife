@@ -1058,6 +1058,7 @@ footer .footer-copy a {
     display: block;
     object-fit: cover;
     max-height: 280px;
+    min-height: 180px;
 }
 
 .bl-profile-actions {
@@ -1075,7 +1076,7 @@ footer .footer-copy a {
     padding: 7px 14px;
     transition: var(--bl-transition);
     white-space: normal;
-    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .bl-profile-stat-list {
@@ -1109,7 +1110,7 @@ footer .footer-copy a {
     font-weight: 600;
     color: #ffffff;
     line-height: 1.4;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
     min-width: 0;
 }
 
@@ -1161,7 +1162,7 @@ footer .footer-copy a {
     line-height: 1.4;
     flex: 1;
     min-width: 0;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* ---- Suggestions ticker section ---- */
@@ -1216,19 +1217,55 @@ footer .footer-copy a {
     }
 }
 
+/*
+ * Landscape mobile — remove the 60vh min-height so the two-column layout
+ * doesn't force excessive scrolling when device height is ~360px.
+ */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .bl-dash-section {
+        min-height: auto;
+    }
+}
+
 /* ---- Responsive overrides (< sm = 576px) ---- */
 @media (max-width: 575.98px) {
     .bl-detail-panel {
         padding: 12px;
     }
 
-    /* Label min-width relaxes at smallest breakpoint — avoids crowding values */
+    /*
+     * Stack label above value — at ~320px the side-by-side flex layout leaves
+     * only ~130px for values such as long descriptions or full education strings.
+     * Vertical stacking is the clean solution; the row gets a touch more padding
+     * so the dividing border doesn't feel cramped.
+     * Reusable: apply .bl-detail-row + .bl-detail-label + .bl-detail-value on
+     * profile.html, view-profile.html, search-profile.html for the same behaviour.
+     */
+    .bl-detail-row {
+        flex-direction: column;
+        gap: 2px;
+        padding: 8px 0;
+    }
+
     .bl-detail-label {
-        min-width: 100px;
+        min-width: unset;
         font-size: 10px;
     }
 
     .bl-profile-actions {
         padding: 10px 12px 4px;
+    }
+}
+
+/*
+ * ---- Narrow phone (< 420px) ----
+ * The 2-column stat grid from the < 768px rule becomes too tight at ~320px
+ * when values contain long names or castes. Drop to single column.
+ * Reusable: any page using .bl-profile-stat-list inherits this automatically.
+ */
+@media (max-width: 419.98px) {
+    .bl-profile-stat-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 }
