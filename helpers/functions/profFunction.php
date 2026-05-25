@@ -877,7 +877,7 @@ if (!function_exists('viewProfSearch')) {
             'MetaDesc' => '',
             'CSSHelpers' => ['style.min.css'],
             'JSHelpers' => ['script.js'],
-            'exJs' => '',
+            'exJs' => file_get_contents(PGS_DIR . DS . 'ex-js-inner-banner.html'),
             'Contents' => file_get_contents(PGS_DIR . DS . 'view-profile.html'),
             'buttonHead' => $_SESSION['btn'],
             'profID' => $custId,
