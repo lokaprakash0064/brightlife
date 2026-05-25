@@ -1,126 +1,160 @@
-<div class="col-md-8 offset-md-2">
-    <div class="card my-4">
-        <div class="card-body">
-            <h4 class="text-center text-danger heading">Edit Profile</h4>
-            <form method="post" action="{AbsUrl}save-prof-admin/{cId}/">
-                {profCrtdFor}
-                {martStat}
-                <div class="form-group">
-                    <label for="rashi" class="col-12 text-info">Rashi</label>
-                    <div class="col-12">
-                        <select class="form-control" name="rashi" id="rashi">
-                            {rashi}
-                        </select>
-                    </div>
+<div class="ba-admin-layout">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card ba-form-card">
+                <div class="card-body">
+                    <h4 class="ba-form-section">Edit Profile</h4>
+                    <form method="post" action="{AbsUrl}save-prof-admin/{cId}/">
+                        <div class="form-group">
+                            {profCrtdFor}
+                        </div>
+                        <div class="form-group">
+                            {martStat}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rashi">Rashi</label>
+                                    <select class="form-control" name="rashi" id="rashi">
+                                        {rashi}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="star">Star</label>
+                                    <select class="form-control" name="star" id="star">
+                                        {star}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gothra">Gothra</label>
+                            <input type="text" name="gothra" id="gothra" class="form-control" value="{gothra}" required="required">
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <select class="form-control" name="state" id="state">
+                                        {state}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" name="city" id="city" class="form-control" value="{city}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="height">Height</label>
+                                    <input type="text" name="height" id="height" class="form-control" value="{height}" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="weight">Weight</label>
+                                    <input type="text" name="weight" id="weight" class="form-control" value="{weight}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {bodyType}
+                        </div>
+                        <div class="form-group">
+                            {complexion}
+                        </div>
+                        <div class="form-group">
+                            {phyStat}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="edu">Education</label>
+                                    <select class="form-control" name="edu" id="edu">
+                                        {education}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="eduDet">Education Details</label>
+                                    <input type="text" name="eduDet" id="eduDet" class="form-control" value="{eduDet}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ocu">Occupation</label>
+                                    <select class="form-control" name="ocu" id="ocu">
+                                        {occupation}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="occDet">Occupation Details</label>
+                                    <input type="text" name="occDet" id="occDet" class="form-control" value="{occDet}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {emplIn}
+                        </div>
+                        <div class="form-group">
+                            <label for="income">Income</label>
+                            <select class="form-control" name="income" id="income">
+                                {income}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            {food}
+                        </div>
+                        <div class="form-group">
+                            {smoke}
+                        </div>
+                        <div class="form-group">
+                            {drink}
+                        </div>
+                        <div class="form-group">
+                            {famStat}
+                        </div>
+                        <div class="form-group">
+                            {famTyp}
+                        </div>
+                        <div class="form-group">
+                            {famVal}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="occFat">Father&#39;s Occupation</label>
+                                    <input type="text" name="occFat" id="occFat" class="form-control" value="{occFat}" required="required">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="occMot">Mother&#39;s Occupation</label>
+                                    <input type="text" name="occMot" id="occMot" class="form-control" value="{occMot}" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Description</label>
+                            <textarea class="form-control" name="desc" id="desc">{desc}</textarea>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-danger" type="submit">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="star" class="col-12 text-info">Star</label>
-                    <div class="col-12">
-                        <select class="form-control" name="star" id="star">
-                            {star}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="gothra" class="col-12 text-info">Gothra</label>
-                    <div class="col-12">
-                        <input type="text" name="gothra" id="gothra" class="form-control" value="{gothra}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="state" class="col-12 text-info">State</label>
-                    <div class="col-12">
-                        <select class="form-control" name="state" id="state">
-                            {state}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="city" class="col-12 text-info">City</label>
-                    <div class="col-12">
-                        <input type="text" name="city" id="city" class="form-control" value="{city}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="height" class="col-12 text-info">Height</label>
-                    <div class="col-12">
-                        <input type="text" name="height" id="height" class="form-control" value="{height}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="weight" class="col-12 text-info">Weight</label>
-                    <div class="col-12">
-                        <input type="text" name="weight" id="weight" class="form-control" value="{weight}" required="required">
-                    </div>
-                </div>
-                {bodyType}
-                {complexion}
-                {phyStat}
-                <div class="form-group">
-                    <label for="edu" class="col-12 text-info">Education</label>
-                    <div class="col-12">
-                        <select class="form-control" name="edu" id="edu">
-                            {education}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="eduDet" class="col-12 text-info">Education Details</label>
-                    <div class="col-12">
-                        <input type="text" name="eduDet" id="eduDet" class="form-control" value="{eduDet}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ocu" class="col-12 text-info">Occupation</label>
-                    <div class="col-12">
-                        <select class="form-control" name="ocu" id="ocu">
-                            {occupation}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="occDet" class="col-12 text-info">Occupation Details</label>
-                    <div class="col-12">
-                        <input type="text" name="occDet" id="occDet" class="form-control" value="{occDet}" required="required">
-                    </div>
-                </div>
-                {emplIn}
-                <div class="form-group">
-                    <label for="income" class="col-12 text-info">Income</label>
-                    <div class="col-12">
-                        <select class="form-control" name="income" id="income">
-                            {income}
-                        </select>
-                    </div>
-                </div>
-                {food}
-                {smoke}
-                {drink}
-                {famStat}
-                {famTyp}
-                {famVal}
-                <div class="form-group">
-                    <label for="occFat" class="col-12 text-info">Father&#39;s Occupation</label>
-                    <div class="col-12">
-                        <input type="text" name="occFat" id="occFat" class="form-control" value="{occFat}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="occMot" class="col-12 text-info">Mother&#39;s Occupation</label>
-                    <div class="col-12">
-                        <input type="text" name="occMot" id="occMot" class="form-control" value="{occMot}" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="desc" class="col-12 text-info">Description</label>
-                    <div class="col-12">
-                        <textarea class="form-control" name="desc" id="desc">{desc}</textarea>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-danger" type="submit">Save</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
