@@ -1,248 +1,135 @@
 <div class="inner-banner"></div>
-<div class="container pb-2">
-    <h2 class="text-center text-primary text-uppercase mt-3">{profID}</h2>
-    <div class="row">
-        <div class="col-md-4 mt-1">
-            <div class="card bg-dark-grad box-shadow" data-aos="fade-in">
-                <img src="{ImgPath}uploads/{Img}" class="card-img-top" alt=" ">
-                <div class="card-body text-light">
-                    <h4 class="text-info text-center">{Name}</h4>
-                    {imgBtn}
+<div class="bl-dash-section">
+    <div class="container">
+        <div class="row">
+
+            <!-- ── Sidebar ── -->
+            <div class="col-md-4 d-flex flex-column mb-4">
+                <div class="bl-profile-sidebar flex-grow-1" data-aos="fade-in">
+                    <img src="{ImgPath}uploads/{Img}" class="bl-profile-photo" alt="Profile Photo">
+                    <div class="bl-profile-actions">
+                        {imgBtn}
+                        {sendMsg}
+                    </div>
+                    <div class="bl-profile-stat-list">
+                        <div class="bl-profile-stat">
+                            <span class="bl-profile-stat-label">ID</span>
+                            <span class="bl-profile-stat-value">{profID}</span>
+                        </div>
+                        <div class="bl-profile-stat">
+                            <span class="bl-profile-stat-label">Name</span>
+                            <span class="bl-profile-stat-value">{Name}</span>
+                        </div>
+                        <div class="bl-profile-stat">
+                            <span class="bl-profile-stat-label">Age</span>
+                            <span class="bl-profile-stat-value">{age} Years</span>
+                        </div>
+                        <div class="bl-profile-stat">
+                            <span class="bl-profile-stat-label">Caste</span>
+                            <span class="bl-profile-stat-value">{caste}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8 mt-1">
-            <div class="card bg-dark-grad box-shadow" data-aos="fade-in">
-                <div class="card-body text-light">
+
+            <!-- ── Detail Panel ── -->
+            <div class="col-md-8 d-flex flex-column mb-4">
+                <div class="bl-detail-panel flex-grow-1" data-aos="fade-in">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Age:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {age}
-                                    </p>
-                                </div>
+                            <h6 class="bl-detail-section-title">Personal Details</h6>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Marital Status</span>
+                                <span class="bl-detail-value">{marStat}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Marital Status:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {marStat}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Rashi</span>
+                                <span class="bl-detail-value">{rashi}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Rashi:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {rashi}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Star</span>
+                                <span class="bl-detail-value">{star}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Star:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {star}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Gothra</span>
+                                <span class="bl-detail-value">{gothra}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Gothra:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {gothra}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Religion</span>
+                                <span class="bl-detail-value">{religion}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Religion:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {religion}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Caste</span>
+                                <span class="bl-detail-value">{caste}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Caste:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {caste}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Location</span>
+                                <span class="bl-detail-value">{city}, {state}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Location:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {city}, {state}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Height</span>
+                                <span class="bl-detail-value">{height}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Height:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {height}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Weight</span>
+                                <span class="bl-detail-value">{weight}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Weight:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {weight}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Profile Created For:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {profCreatedBy}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Profile For</span>
+                                <span class="bl-detail-value">{profCreatedBy}</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Education / Education Details:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {education}
-                                    </p>
-                                </div>
+                            <h6 class="bl-detail-section-title">Professional &amp; Family</h6>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Education</span>
+                                <span class="bl-detail-value">{education}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Occupation / Occupation Details:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {occupation}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Occupation</span>
+                                <span class="bl-detail-value">{occupation}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Employed In:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {empIn}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Employed In</span>
+                                <span class="bl-detail-value">{empIn}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Father&#039;s Occupation:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {fatherOccupation}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Father&#039;s Occ.</span>
+                                <span class="bl-detail-value">{fatherOccupation}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Mother&#039;s Occupation:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {motherOccupation}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Mother&#039;s Occ.</span>
+                                <span class="bl-detail-value">{motherOccupation}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Income:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {income}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Income</span>
+                                <span class="bl-detail-value">{income}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Food:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {food}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Food</span>
+                                <span class="bl-detail-value">{food}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Smoking:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {smoking}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Smoking</span>
+                                <span class="bl-detail-value">{smoking}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Drinking:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {drinking}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Drinking</span>
+                                <span class="bl-detail-value">{drinking}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Family Status:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {famStat}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Family Status</span>
+                                <span class="bl-detail-value">{famStat}</span>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6 class="text-info heading">Description:</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="text-justify">
-                                        {desc}
-                                    </p>
-                                </div>
+                            <div class="bl-detail-row">
+                                <span class="bl-detail-label">Description</span>
+                                <span class="bl-detail-value">{desc}</span>
                             </div>
                         </div>
                     </div>
-                    {sendMsg}
                 </div>
             </div>
+
         </div>
     </div>
 </div>
