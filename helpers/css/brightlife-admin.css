@@ -24,10 +24,11 @@
  *   globally. Use .ba-* scoped selectors for admin-specific overrides.
  *
  * PHASE PLAN:
- *   Phase A (current): Foundation layer — tokens, .bg-theme1, component stubs.
- *   Phase B: Apply .ba-form-card to edit-signup-admin.html.
- *   Phase C: Extend .ba-form-card to edit-prof-admin.html and edit-part-pref-admin.html.
- *   Phase D: DataTables internals redesign (view-admin-data.html).
+ *   Phase A (complete): Foundation layer — tokens, .bg-theme1, component stubs.
+ *   Phase B (complete): .ba-form-card applied to edit-signup-admin.html.
+ *   Phase C (complete): .ba-form-card extended to edit-prof-admin.html and edit-part-pref-admin.html.
+ *   Phase D (complete): Wrapper modernization, table typography, action button — view-admin-data.html.
+ *   Phase D-4 (deferred): DataTables internal selectors — dedicated brightlife-datatables.css only.
  */
 
 /* ==========================================================================
@@ -104,6 +105,9 @@
    5. DataTable Panel Wrapper
    Wraps the #example table and its DataTables-generated scaffold.
    Do NOT target DataTables internal selectors inside this block.
+   overflow-x intentionally omitted: absolutely-positioned .dropdown-menu
+   elements in the Actions column would be clipped by a scroll container.
+   Horizontal overflow falls through to the page-level scroll on narrow screens.
    ========================================================================== */
 
 .ba-data-panel {
@@ -112,7 +116,36 @@
     box-shadow: var(--bl-shadow);
     padding: 1.25rem;
     margin-top: 1.5rem;
-    overflow-x: auto;
+}
+
+/* Table typography — scoped to panel; does not touch DataTables generated wrappers */
+.ba-data-panel .table {
+    font-size: 0.875rem;
+    color: var(--bl-text);
+}
+
+.ba-data-panel .table thead th {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--bl-secondary);
+    background-color: var(--bl-light-bg);
+    border-bottom-width: 2px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.ba-data-panel .table tfoot th {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    color: var(--bl-text-muted);
+    background-color: var(--bl-light-bg);
+}
+
+.ba-data-panel .table tbody td {
+    vertical-align: middle;
 }
 
 
@@ -177,11 +210,21 @@
    ========================================================================== */
 
 .ba-action-btn {
+    /* Base display — replaces Bootstrap .btn since that class is removed */
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    /* Visual */
     background: transparent;
     border: 1px solid var(--bl-text-muted);
     color: var(--bl-text);
     border-radius: var(--bl-radius-pill);
     font-size: 0.8rem;
+    line-height: 1.5;
     padding: 0.3rem 0.7rem;
     transition: var(--bl-transition);
 }
@@ -191,6 +234,8 @@
     background: var(--bl-primary);
     border-color: var(--bl-primary);
     color: var(--bl-white);
+    text-decoration: none;
+    outline: none;
 }
 
 .ba-action-btn + .dropdown-menu {
@@ -223,5 +268,12 @@
 
     .ba-data-panel {
         padding: 0.75rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .ba-data-panel .table thead th,
+    .ba-data-panel .table tfoot th {
+        font-size: 0.72rem;
     }
 }

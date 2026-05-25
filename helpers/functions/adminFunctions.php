@@ -35,7 +35,7 @@ if (isLoggedAdmin() !== true) {
                         date('jS M Y', strtotime($suData[0]['su_dob'])),
                         date('d/m/Y H:i:s', strtotime($dat['pp_dttm'])),
                         '<div class="dropdown show">
-                            <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Click here for edit options">
+                            <a class="ba-action-btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Click here for edit options">
                               <i class="fas fa-user-cog"></i>
                               </a>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
