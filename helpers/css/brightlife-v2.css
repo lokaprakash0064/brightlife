@@ -1032,3 +1032,203 @@ footer .footer-copy a {
     margin-bottom: 6px;
     line-height: 1.5;
 }
+
+
+/* ==========================================================================
+   20. Authenticated Dashboard — User Profile
+   ========================================================================== */
+
+/* Page wrapper — sits over .bg-grad gradient, giving redesigned pages a clean bg */
+.bl-dash-section {
+    background: var(--bl-light-bg);
+    padding: 24px 0 32px;
+    min-height: 60vh;
+}
+
+/* ---- Sidebar (dark card) ---- */
+.bl-profile-sidebar {
+    background: linear-gradient(160deg, #2c3e50 0%, #1a252f 100%);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow-hover);
+    overflow: hidden;
+}
+
+.bl-profile-sidebar .bl-profile-photo {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 280px;
+}
+
+.bl-profile-actions {
+    padding: 12px 16px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bl-profile-actions .btn {
+    border-radius: var(--bl-radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 7px 14px;
+    transition: var(--bl-transition);
+    white-space: normal;
+    word-break: break-word;
+}
+
+.bl-profile-stat-list {
+    padding: 16px;
+}
+
+.bl-profile-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.bl-profile-stat:last-child {
+    margin-bottom: 0;
+}
+
+.bl-profile-stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 600;
+    min-width: 52px;
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+
+.bl-profile-stat-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    min-width: 0;
+}
+
+/* ---- Detail panel (light card) ---- */
+.bl-detail-panel {
+    background: var(--bl-white);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    padding: 24px;
+}
+
+.bl-detail-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--bl-primary);
+    border-bottom: 2px solid var(--bl-primary);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.bl-detail-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 6px 0;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.bl-detail-row:last-child {
+    border-bottom: none;
+}
+
+.bl-detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--bl-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    min-width: 120px;
+    flex-shrink: 0;
+    padding-right: 8px;
+}
+
+.bl-detail-value {
+    font-size: 13px;
+    color: var(--bl-text);
+    font-weight: 500;
+    line-height: 1.4;
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+/* ---- Suggestions ticker section ---- */
+.bl-dash-suggestions {
+    padding: 16px 0 8px;
+}
+
+.bl-dash-suggestions-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bl-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* ---- Responsive overrides (< md = 768px) ---- */
+@media (max-width: 767.98px) {
+    .bl-dash-section {
+        padding: 16px 0 24px;
+    }
+
+    .bl-detail-panel {
+        padding: 16px;
+    }
+
+    /* Stats switch to 2-column grid — fills wide mobile sidebar properly */
+    .bl-profile-stat-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 8px;
+    }
+
+    /* margin-bottom redundant when gap is controlling spacing */
+    .bl-profile-stat {
+        margin-bottom: 0;
+    }
+
+    /* Partner Preference section needs breathing room when stacked below Personal Details */
+    .bl-detail-panel .col-md-6 + .col-md-6 {
+        margin-top: 20px;
+    }
+
+    /* Ticker section tighter on mobile */
+    .bl-dash-suggestions {
+        padding: 12px 0 8px;
+    }
+
+    .bl-dash-suggestions-title {
+        font-size: 14px;
+    }
+}
+
+/* ---- Responsive overrides (< sm = 576px) ---- */
+@media (max-width: 575.98px) {
+    .bl-detail-panel {
+        padding: 12px;
+    }
+
+    /* Label min-width relaxes at smallest breakpoint — avoids crowding values */
+    .bl-detail-label {
+        min-width: 100px;
+        font-size: 10px;
+    }
+
+    .bl-profile-actions {
+        padding: 10px 12px 4px;
+    }
+}
