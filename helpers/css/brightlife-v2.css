@@ -1456,7 +1456,7 @@ footer .footer-copy a {
 }
 
 .bl-annex-card-body {
-    background: var(--bl-surface);
+    background: #1a2537;
     padding: 8px 0;
 }
 
@@ -1520,4 +1520,131 @@ footer .footer-copy a {
     max-width: 480px;
     margin: 0 auto 28px;
     line-height: 1.7;
+}
+
+/* ==========================================================================
+   §22 — Auth Form Panel System
+   Reusable dark-card form containers for search, auth, and future CRUD pages.
+   (edit-profile, edit-partner-preference, personal-detail, partner-preference)
+   ========================================================================== */
+
+/* --- Form panel container ------------------------------------------------- */
+.bl-form-panel {
+    background: var(--bl-dark-card);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow-hover);
+    overflow: hidden;
+}
+
+.bl-form-panel-header {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: center;
+}
+
+.bl-form-panel-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bl-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    font-family: 'Audiowide', cursive;
+}
+
+.bl-form-panel-body {
+    padding: 24px 28px 28px;
+}
+
+/* --- Inputs and labels inside dark panels --------------------------------- */
+.bl-auth-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.3px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.bl-auth-form .form-control {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 14px;
+    transition: var(--bl-transition);
+}
+
+.bl-auth-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--bl-primary);
+    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.18);
+    color: #fff;
+    outline: none;
+}
+
+.bl-auth-form .form-control option {
+    background: #1a252f;
+    color: #fff;
+}
+
+.bl-auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+/* --- 2-column responsive form grid --------------------------------------- */
+.bl-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+}
+
+@media (max-width: 575.98px) {
+    .bl-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Horizontal divider inside a form panel ------------------------------ */
+.bl-form-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    margin: 20px 0;
+}
+
+/* --- Submit button area -------------------------------------------------- */
+.bl-form-submit {
+    text-align: center;
+    padding-top: 8px;
+}
+
+/* --- Success / confirmation state (thank-you page) ----------------------- */
+.bl-success-icon {
+    font-size: 52px;
+    color: #27ae60;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.bl-success-id {
+    display: inline-block;
+    background: rgba(233, 30, 99, 0.12);
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    border-radius: var(--bl-radius-pill);
+    padding: 8px 28px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bl-primary);
+    letter-spacing: 2px;
+    margin: 8px 0 24px;
+}
+
+.bl-success-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
 }

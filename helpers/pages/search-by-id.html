@@ -1,19 +1,26 @@
-<div class="container pt-3 pb-3">
-        <div class="col-md-6 offset-md-3">
-            <div class="card bg-dark-grad box-shadow card-sm">
-                <div class="card-body">
-                    <h4 class="text-info text-center text-uppercase heading">Search by ID</h4>
-                    <form class="text-light" method="post" action="{AbsUrl}profile/">
-                        <div class="form-group">
-                            <div class="col-12">
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-6 col-lg-4">
+                <div class="bl-form-panel" data-aos="fade-up">
+                    <div class="bl-form-panel-header">
+                        <h4 class="bl-form-panel-title">Search by ID</h4>
+                    </div>
+                    <div class="bl-form-panel-body">
+                        <form class="bl-auth-form" method="post" action="{AbsUrl}profile/">
+                            <div class="form-group">
+                                <label for="blId">Brightlife ID</label>
                                 <input type="text" name="blId" id="blId" class="form-control" placeholder="Enter Brightlife ID" required="required">
                             </div>
-                            <div class="text-center mt-3">
-                                <button class="btn btn-danger" type="submit">Search</button>
+                            <div class="bl-form-submit">
+                                <button class="btn btn-bl-primary" type="submit">
+                                    <i class="fas fa-search mr-2"></i>Search
+                                </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</section>

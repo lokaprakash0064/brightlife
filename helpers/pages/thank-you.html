@@ -1,15 +1,21 @@
-<div class="container pb-2">
-    <div class="col-md-8 offset-md-2">
-        <div class="card bg-dark-grad box-shadow mt-2" data-aos="fade-down">
-            <div class="card-body">
-                <h4 class="text-center text-success heading">Thank You for Your Registration</h4>
-                <h5 class="text-center text-danger mt-2">Your Brightlife Id is: {blId}</h5>
-                <div class="text-center">
-                    <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-info mt-2 box-shadow">
-                        <i class="fas fa-sign-in-alt"></i> Click Here to Log In
-                    </a>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-7 col-lg-5">
+                <div class="bl-form-panel text-center" data-aos="fade-down">
+                    <div class="bl-form-panel-body">
+                        <div class="bl-success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="bl-form-panel-title mb-2">Registration Successful</h4>
+                        <p class="bl-success-label mt-3">Your Brightlife ID</p>
+                        <div class="bl-success-id">{blId}</div>
+                        <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-bl-primary">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Click Here to Log In
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
