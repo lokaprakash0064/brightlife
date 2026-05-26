@@ -1369,3 +1369,155 @@ footer .footer-copy a {
         min-height: unset;
     }
 }
+
+/* ==========================================================================
+   §21 — Content Pages: Prose, Callout, Content List, Annex Card,
+          Section Heading, Error State
+   ========================================================================== */
+
+/* --- Prose container ---------------------------------------------------- */
+.bl-prose {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.bl-prose p {
+    color: var(--bl-text-muted);
+    font-size: 15px;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+}
+
+/* --- Callout blocks ------------------------------------------------------- */
+.bl-callout {
+    border-left: 4px solid var(--bl-accent);
+    background: rgba(52, 152, 219, 0.06);
+    border-radius: 0 var(--bl-radius) var(--bl-radius) 0;
+    padding: 14px 18px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: var(--bl-text-muted);
+}
+
+.bl-callout-warning {
+    border-left-color: #e67e22;
+    background: rgba(230, 126, 34, 0.07);
+}
+
+/* --- Content list --------------------------------------------------------- */
+.bl-content-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.bl-content-list li {
+    position: relative;
+    padding: 8px 12px 8px 36px;
+    font-size: 14px;
+    color: var(--bl-text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bl-content-list li:last-child {
+    border-bottom: none;
+}
+
+.bl-content-list li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--bl-primary);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+
+/* --- Annex card ----------------------------------------------------------- */
+.bl-annex-card {
+    border-radius: var(--bl-radius);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.5rem;
+}
+
+.bl-annex-card-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bl-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.bl-annex-card-body {
+    background: var(--bl-surface);
+    padding: 8px 0;
+}
+
+/* --- Section heading ------------------------------------------------------ */
+.bl-section-heading {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--bl-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.bl-section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 48px;
+    height: 2px;
+    background: var(--bl-primary);
+    z-index: 1;
+}
+
+/* --- Error state (404) ---------------------------------------------------- */
+.bl-error-state {
+    padding: 80px 0 100px;
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+}
+
+.bl-error-icon {
+    font-size: 64px;
+    color: var(--bl-primary);
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.bl-error-code {
+    font-size: 100px;
+    font-weight: 800;
+    color: var(--bl-primary);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.bl-error-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bl-text);
+    margin-bottom: 12px;
+}
+
+.bl-error-message {
+    font-size: 15px;
+    color: var(--bl-text-muted);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+}
