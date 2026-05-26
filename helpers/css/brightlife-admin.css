@@ -277,3 +277,33 @@
         font-size: 0.72rem;
     }
 }
+
+
+/* ==========================================================================
+   9. Data Panel Header (.ba-data-panel-header)
+   Optional header row inside .ba-data-panel, above the DataTable.
+   Provides a labelled section title consistent with the ba-* system.
+   ========================================================================== */
+
+.ba-data-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.ba-data-panel-header i {
+    color: var(--bl-primary);
+    font-size: 16px;
+}
+
+.ba-data-panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bl-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
