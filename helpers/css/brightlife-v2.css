@@ -1648,3 +1648,76 @@ footer .footer-copy a {
     letter-spacing: 1px;
     margin-bottom: 4px;
 }
+
+/* ==========================================================================
+   §23 — Data Table Panel System
+   Reusable LIGHT-surface panel for DataTables pages.
+
+   WHY LIGHT SURFACE:
+   DataTables 1.10.20 injects .dataTables_filter, .dataTables_length,
+   .dataTables_info, .dataTables_paginate with their own default light-themed
+   styles. These controls are explicitly off-limits per migration rules.
+   A dark panel surface would make those controls unreadable without a
+   separate brightlife-datatables.css override file.
+   Using var(--bl-white) means DataTables defaults render correctly as-is.
+
+   SCOPING RULE:
+   bl-data-table CSS only touches thead/tfoot th properties that DataTables
+   does NOT control: background-color, color, font-size, font-weight, border-color.
+   It never touches .sorting, .sorting_asc, .sorting_desc, or any DataTables class.
+   ========================================================================== */
+
+/* --- Panel container ------------------------------------------------------ */
+.bl-table-panel {
+    background: var(--bl-white);
+    border-radius: var(--bl-radius);
+    box-shadow: var(--bl-shadow);
+    overflow: hidden;
+}
+
+/* --- Panel header --------------------------------------------------------- */
+.bl-table-panel-header {
+    padding: 16px 24px 14px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bl-table-panel-header i {
+    color: var(--bl-primary);
+    font-size: 16px;
+}
+
+.bl-table-panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bl-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* --- Panel body — overflow-x handles mobile when DataTables overflows ---- */
+.bl-table-panel-body {
+    padding: 16px 20px 20px;
+    overflow-x: auto;
+}
+
+/* --- Scoped table header/footer styling ----------------------------------- */
+.bl-data-table > thead > tr > th {
+    background-color: var(--bl-light-bg);
+    color: var(--bl-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    border-color: #dee2e6;
+    white-space: nowrap;
+}
+
+.bl-data-table > tfoot > tr > th {
+    background-color: var(--bl-light-bg);
+    color: var(--bl-text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    border-color: #dee2e6;
+}
