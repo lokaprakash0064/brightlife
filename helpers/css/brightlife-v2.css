@@ -1649,6 +1649,34 @@ footer .footer-copy a {
     margin-bottom: 4px;
 }
 
+/* --- CRUD form section titles — mid-form heading separators (Phase 5+) --- */
+.bl-form-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 24px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* --- CRUD form actions — submit area with visual top separator ----------- */
+.bl-form-actions {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* --- Inline hint text beneath form fields -------------------------------- */
+.bl-form-note {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 5px;
+    display: block;
+}
+
 /* ==========================================================================
    §23 — Data Table Panel System
    Reusable LIGHT-surface panel for DataTables pages.
