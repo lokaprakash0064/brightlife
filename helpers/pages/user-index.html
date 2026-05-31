@@ -184,7 +184,7 @@
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content banner-search">
             <div class="modal-header">
-                <h5 class="modal-title text-center text-danger text-uppercase heading">Add Images</h5>
+                <h5 class="modal-title text-center text-danger text-uppercase">Add Images</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-light">&times;</span>
                 </button>
@@ -192,14 +192,12 @@
             <div class="modal-body">
                 <form class="text-light" method="post" action="{AbsUrl}add-image/{custId}/" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="uploadPhoto" class="text-info col-12">Upload Image(One or Multiple)</label>
-                        <div class="col-12">
-                            <input type="file" class="form-control-file" name="uploadPhoto[]" id="uploadPhoto" multiple="multiple" required="required">
-                            <cite class="help-block text-warning">Image Size must be less than 10 MB</cite>
-                        </div>
+                        <label for="uploadPhoto">Upload Image(One or Multiple)</label>
+                        <input type="file" class="form-control-file" name="uploadPhoto[]" id="uploadPhoto" multiple="multiple" required="required">
+                        <small class="form-text bl-form-note">Image Size must be less than 10 MB</small>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-danger" type="submit">Submit</button>
+                        <button class="btn btn-bl-primary" type="submit">Submit</button>
                     </div>
                 </form>
             </div>

@@ -536,42 +536,6 @@ footer .footer-copy a {
     color: var(--bl-primary) !important;
 }
 
-/* Footer contact info layout (for Phase 3 footer content) */
-.bl-contact-info {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 14px;
-    color: var(--bl-footer-text);
-    font-size: 14px;
-}
-
-.bl-contact-icon {
-    color: var(--bl-accent);
-    margin-right: 12px;
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-
-/* Social links in footer */
-.bl-social-links a {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    text-align: center;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--bl-white) !important;
-    margin-right: 8px;
-    transition: var(--bl-transition);
-    font-size: 14px;
-}
-
-.bl-social-links a:hover {
-    background: var(--bl-primary);
-    transform: translateY(-3px);
-}
-
 
 /* ==========================================================================
    12. Hero Section — home.html (Phase 3)
