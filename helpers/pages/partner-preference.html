@@ -1,174 +1,189 @@
-<div class="container pb-2">
-    <div class="col-md-8 offset-md-2">
-        <div class="card bg-dark-grad box-shadow mt-2">
-            <div class="card-body">
-                <h4 class="text-primary text-center text-uppercase heading">Partner Preference</h4>
-                <form class="text-light" method="post" action="{AbsUrl}save-partner-preference/{custId}/" name="savePartnerPref" id="savePartnerPref" role="form">
-                    <label class="col-12 text-info">Marital Status</label>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="maritalStat" id="unmarried" value="1" checked="checked" class="form-check-input">
-                        <label class="form-check-label" for="unmarried">Unmarried</label>
+<section class="py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="bl-form-panel bl-auth-form" data-aos="fade-up">
+                    <div class="bl-form-panel-header">
+                        <i class="fas fa-heart"></i>
+                        <h4 class="bl-form-panel-title">Partner Preference</h4>
                     </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="maritalStat" id="widower" value="2" class="form-check-input">
-                        <label class="form-check-label" for="widower">Widower</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="maritalStat" id="divorced" value="3" class="form-check-input">
-                        <label class="form-check-label" for="divorced">Divorced</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="maritalStat" id="awtDivorce" value="4" class="form-check-input">
-                        <label class="form-check-label" for="awtDivorce">Awaiting Divorce</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="religion" class="text-info col-12">Religion</label>
-                        <div class="col-12">
-                            <select class="form-control" name="religion" id="religion">
-                                {religion}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="caste" class="text-info col-12">Caste</label>
-                        <div class="col-12">
-                            <select class="form-control" name="caste" id="caste">
-                                {Caste}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="resdingState" class="text-info col-12">Residing State</label>
-                        <div class="col-12">
-                            <select class="form-control" name="resdingState" id="resdingState">
-                                {state}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="residingCity" class="text-info col-12">Residing City</label>
-                        <div class="col-12">
-                            <input type="text" class="form-control" name="residingCity" id="residingCity" required="required" placeholder="Residing City">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="ageFrom" class="col-3 text-info">Age From</label>
-                            <div class="col-3">
-                                <input type="number" class="form-control" name="ageFrom" id="ageFrom" required="required">
+                    <div class="bl-form-panel-body">
+                        <form method="post" action="{AbsUrl}save-partner-preference/{custId}/" name="savePartnerPref" id="savePartnerPref" role="form">
+                            <div class="form-group">
+                                <label>Marital Status</label>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="maritalStat" id="unmarried" value="1" checked="checked" class="form-check-input">
+                                    <label class="form-check-label" for="unmarried">Unmarried</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="maritalStat" id="widower" value="2" class="form-check-input">
+                                    <label class="form-check-label" for="widower">Widower</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="maritalStat" id="divorced" value="3" class="form-check-input">
+                                    <label class="form-check-label" for="divorced">Divorced</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="maritalStat" id="awtDivorce" value="4" class="form-check-input">
+                                    <label class="form-check-label" for="awtDivorce">Awaiting Divorce</label>
+                                </div>
                             </div>
-                            <label for="ageTo" class="col-3 text-info">To</label>
-                            <div class="col-3">
-                                <input type="number" class="form-control" name="ageTo" id="ageTo" required="required">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="religion">Religion</label>
+                                        <select class="form-control" name="religion" id="religion">
+                                            {religion}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="caste">Caste</label>
+                                        <select class="form-control" name="caste" id="caste">
+                                            {Caste}
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="resdingState">Residing State</label>
+                                        <select class="form-control" name="resdingState" id="resdingState">
+                                            {state}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="residingCity">Residing City</label>
+                                        <input type="text" class="form-control" name="residingCity" id="residingCity" required="required" placeholder="Residing City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ageFrom">Age From</label>
+                                        <input type="number" class="form-control" name="ageFrom" id="ageFrom" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ageTo">Age To</label>
+                                        <input type="number" class="form-control" name="ageTo" id="ageTo" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="bl-form-section-title">Education &amp; Occupation</h5>
+                            <div class="form-group">
+                                <label for="education">Education</label>
+                                <select class="form-control" name="education" id="education">
+                                    {education}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="occupation">Occupation</label>
+                                <select class="form-control" name="occupation" id="occupation">
+                                    {occupation}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Employed In</label>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="government" value="1" checked="checked" class="form-check-input">
+                                    <label class="form-check-label" for="government">Government</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="private" value="2" class="form-check-input">
+                                    <label class="form-check-label" for="private">Private</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="business" value="3" class="form-check-input">
+                                    <label class="form-check-label" for="business">Business</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="Defence" value="4" class="form-check-input">
+                                    <label class="form-check-label" for="Defence">Defence</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="SelfEmployed" value="5" class="form-check-input">
+                                    <label class="form-check-label" for="SelfEmployed">Self Employed</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="employedIn" id="notWorking" value="6" class="form-check-input">
+                                    <label class="form-check-label" for="notWorking">Not Working</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="income">income</label>
+                                <select class="form-control" name="income" id="income">
+                                    {income}
+                                </select>
+                            </div>
+                            <h5 class="bl-form-section-title">Family Profile</h5>
+                            <div class="form-group">
+                                <label>Family Status</label>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyStatus" id="middleClass" value="1" checked="checked" class="form-check-input">
+                                    <label class="form-check-label" for="middleClass">Middle Class</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyStatus" id="upMiddleClass" value="2" class="form-check-input">
+                                    <label class="form-check-label" for="upMiddleClass">Upper Middle Class</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyStatus" id="rich" value="3" class="form-check-input">
+                                    <label class="form-check-label" for="rich">Rich</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyStatus" id="affluent" value="4" class="form-check-input">
+                                    <label class="form-check-label" for="affluent">Affluent</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Family Type</label>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyType" id="joint" value="1" checked="checked" class="form-check-input">
+                                    <label class="form-check-label" for="joint">Joint</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyType" id="Nuclear" value="2" class="form-check-input">
+                                    <label class="form-check-label" for="Nuclear">Nuclear</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Family Values</label>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyValues" id="orthodox" value="1" checked="checked" class="form-check-input">
+                                    <label class="form-check-label" for="orthodox">Orthodox</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyValues" id="traditional" value="2" class="form-check-input">
+                                    <label class="form-check-label" for="traditional">Traditional</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyValues" id="moderate" value="3" class="form-check-input">
+                                    <label class="form-check-label" for="moderate">Moderate</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-3">
+                                    <input type="radio" name="familyValues" id="liberal" value="4" class="form-check-input">
+                                    <label class="form-check-label" for="liberal">Liberal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="partnerDesc">Partner Description</label>
+                                <textarea class="form-control" name="partnerDesc" id="partnerDesc" rows="4" required="required" placeholder="Describe About Your Partner"></textarea>
+                                <small class="form-text bl-form-note">Describe within 300 characters</small>
+                            </div>
+                            <div class="bl-form-actions">
+                                <button class="btn btn-bl-primary" type="submit">Save</button>
+                            </div>
+                        </form>
                     </div>
-                    <h5 class="text-primary text-center text-uppercase heading">Education &amp; Occupation</h5>
-                    <div class="form-group">
-                        <label for="education" class="text-info col-12">Education</label>
-                        <div class="col-12">
-                            <select class="form-control" name="education" id="education">
-                                {education}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="occupation" class="text-info col-12">Occupation</label>
-                        <div class="col-12">
-                            <select class="form-control" name="occupation" id="occupation">
-                                {occupation}
-                            </select>
-                        </div>
-                    </div>
-                    <label class="col-12 text-info">Employed In</label>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="government" value="1" checked="checked" class="form-check-input">
-                        <label class="form-check-label" for="government">Government</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="private" value="2" class="form-check-input">
-                        <label class="form-check-label" for="private">Private</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="business" value="3" class="form-check-input">
-                        <label class="form-check-label" for="business">Business</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="Defence" value="4" class="form-check-input">
-                        <label class="form-check-label" for="Defence">Defence</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="SelfEmployed" value="5" class="form-check-input">
-                        <label class="form-check-label" for="SelfEmployed">Self Employed</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="employedIn" id="notWorking" value="6" class="form-check-input">
-                        <label class="form-check-label" for="notWorking">Not Working</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="income" class="text-info col-12">income</label>
-                        <div class="col-12">
-                            <select class="form-control" name="income" id="income">
-                                {income}
-                            </select>
-                        </div>
-                    </div>
-                    <h5 class="text-primary text-center text-uppercase heading">Family Profile</h5>
-                    <label class="col-12 text-info">Family Status</label>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyStatus" id="middleClass" value="1" checked="checked" class="form-check-input">
-                        <label class="form-check-label" for="middleClass">Middle Class</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyStatus" id="upMiddleClass" value="2" class="form-check-input">
-                        <label class="form-check-label" for="upMiddleClass">Upper Middle Class</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyStatus" id="rich" value="3" class="form-check-input">
-                        <label class="form-check-label" for="rich">Rich</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyStatus" id="affluent" value="4" class="form-check-input">
-                        <label class="form-check-label" for="affluent">Affluent</label>
-                    </div>
-                    <label class="col-12 text-info">Family Type</label>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyType" id="joint" value="1" checked="checked" class="form-check-input">
-                        <label class="form-check-label" for="joint">Joint</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyType" id="Nuclear" value="2" class="form-check-input">
-                        <label class="form-check-label" for="Nuclear">Nuclear</label>
-                    </div>
-                    <label class="col-12 text-info">Family Values</label>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyValues" id="orthodox" value="1" checked="checked" class="form-check-input">
-                        <label class="form-check-label" for="orthodox">Orthodox</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyValues" id="traditional" value="2" class="form-check-input">
-                        <label class="form-check-label" for="traditional">Traditional</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyValues" id="moderate" value="3" class="form-check-input">
-                        <label class="form-check-label" for="moderate">Moderate</label>
-                    </div>
-                    <div class="form-check form-check-inline ml-3">
-                        <input type="radio" name="familyValues" id="liberal" value="4" class="form-check-input">
-                        <label class="form-check-label" for="liberal">Liberal</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="partnerDesc" class="col-12 text-info">Partner Description</label>
-                        <div class="col-12">
-                            <textarea class="form-control" name="partnerDesc" id="partnerDesc" required="required" placeholder="Describe About Your Partner"></textarea>
-                            <cite class="help-block text-warning">Describe within 300 characters</cite>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-danger" type="submit">Save</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
