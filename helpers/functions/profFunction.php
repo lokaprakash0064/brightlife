@@ -19,9 +19,17 @@ if (!function_exists('saveSignUp')) {
 
     function saveSignUp() {
         $post = DataFilter::getObject()->cleanData($_POST);
-        if (empty($post['name']) or ! isset($post['name'])) {
+        // trim() is redundant after cleanData() (which already trims), kept only
+        // for clarity that whitespace-only names are rejected below
+        if (empty(trim($post['name'] ?? '')) or ! isset($post['name'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please Enter Your Name';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (mb_strlen($post['name']) > 100) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Name must not exceed 100 characters';
             header('Location:' . ACCESS_URL);
             exit;
         }
@@ -31,15 +39,107 @@ if (!function_exists('saveSignUp')) {
             header('Location:' . ACCESS_URL);
             exit;
         }
+        // strict parse against the dd-mm-yyyy format advertised by the signup form
+        // (see helpers/tpls/template.html placeholder="dd-mm-yyyy"); strtotime()
+        // is deliberately not used here as it silently accepts/reinterprets
+        // malformed dates instead of rejecting them
+        $dobObj = DateTime::createFromFormat('d-m-Y', $post['dob']);
+        $dobErrors = DateTime::getLastErrors();
+        // PHP 8.3+ returns false (not an array) from getLastErrors() when there
+        // were no warnings/errors, so only inspect the counts when it's an array
+        if ($dobObj === false or ( is_array($dobErrors) and ( $dobErrors['warning_count'] > 0 or $dobErrors['error_count'] > 0))) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Enter a Valid Date of Birth in dd-mm-yyyy format';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        $dobObj->setTime(0, 0, 0);
+        $today = new DateTime('today');
+        if ($dobObj > $today) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Date of Birth cannot be in the future';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if ($today->diff($dobObj)->y < 18) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'You must be at least 18 years old to register';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (!isset($post['gender']) or !in_array($post['gender'], ['1', '2'], true)) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select a Valid Gender';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (empty($post['religion']) or ! isset($post['religion'])) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select Your Religion';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        $relData = DbOperations::getObject()->fetchData('select rel_id from religion where rel_id = ?', [$post['religion']]);
+        if (count($relData) < 1) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select a Valid Religion';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (empty($post['motherTounge']) or ! isset($post['motherTounge'])) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select Your Mother Tongue';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        $mtData = DbOperations::getObject()->fetchData('select mt_id from mother_tounge where mt_id = ?', [$post['motherTounge']]);
+        if (count($mtData) < 1) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select a Valid Mother Tongue';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
         if (empty($post['caste']) or ! isset($post['caste'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please Enter Your Caste / Division';
             header('Location:' . ACCESS_URL);
             exit;
         }
+        $casteData = DbOperations::getObject()->fetchData('select caste_id from bl_caste where caste_id = ?', [$post['caste']]);
+        if (count($casteData) < 1) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Select a Valid Caste / Division';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
         if (empty($post['mobile']) or ! isset($post['mobile'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please Enter Your Mobile Number';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (!preg_match('/^[0-9]{10}$/', $post['mobile'])) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Enter a Valid 10 Digit Mobile Number';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        $moData = DbOperations::getObject()->fetchData('select count(su_mobile) as mocount from bl_sign_up where su_mobile = ?', [$post['mobile']]);
+        if (intval($moData[0]['mocount']) > 0) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'This mobile number is already registered';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (empty($post['email']) or ! isset($post['email'])) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Enter Your E-mail Id';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
+        if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL) or ( strlen($post['email']) > 100)) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Please Enter a Valid E-mail Id';
             header('Location:' . ACCESS_URL);
             exit;
         }
@@ -57,6 +157,12 @@ if (!function_exists('saveSignUp')) {
             header('Location:' . ACCESS_URL);
             exit;
         }
+        if (( strlen($post['pass']) < 6) or ( strlen($post['pass']) > 50)) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Password must be between 6 and 50 characters';
+            header('Location:' . ACCESS_URL);
+            exit;
+        }
         if (!isset($post['rpass']) or ( $post['pass'] !== $post['rpass'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please re-enter password correctly';
@@ -68,7 +174,7 @@ if (!function_exists('saveSignUp')) {
         $ins = [
             null,
             $post['name'],
-            date('Y-m-d', strtotime($post['dob'])),
+            $dobObj->format('Y-m-d'),
             $post['gender'],
             $post['religion'],
             $post['motherTounge'],
