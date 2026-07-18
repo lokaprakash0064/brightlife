@@ -11,6 +11,24 @@
  * @outputBuffering disabled
  */
 session_start();
+
+/*
+ * global security headers, sent once per request before any output.
+ * headers_sent() guard added as defensive resilience only; nothing in
+ * this file emits output ahead of this block today.
+ */
+if (!headers_sent()) {
+    header('X-Frame-Options: SAMEORIGIN');
+    header('X-Content-Type-Options: nosniff');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()');
+    // HSTS is only meaningful (and only sent) over an already-HTTPS request,
+    // so this is inert on the HTTP dev environment
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+    }
+}
+
 /*
  * set the error handler in ALL, DEPRICATED & STRICT mode
  * so that no errors (not even syntactical) can be tolerated
