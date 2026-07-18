@@ -132,6 +132,17 @@ if (!function_exists('saveSignUp')) {
             header('Location:' . ACCESS_URL);
             exit;
         }
+        // referrer's phone number is optional; only validate format when supplied
+        $referrerMobile = null;
+        if (isset($post['referrerMobile']) and ! empty(trim($post['referrerMobile']))) {
+            if (!preg_match('/^[0-9]{10}$/', $post['referrerMobile'])) {
+                $_SESSION['STATUS'] = 'error';
+                $_SESSION['MSG'] = 'Please Enter a Valid 10 Digit Referred Person Phone Number';
+                header('Location:' . ACCESS_URL);
+                exit;
+            }
+            $referrerMobile = $post['referrerMobile'];
+        }
         if (empty($post['email']) or ! isset($post['email'])) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Please Enter Your E-mail Id';
@@ -181,6 +192,7 @@ if (!function_exists('saveSignUp')) {
             $post['motherTounge'],
             $post['caste'],
             $post['mobile'],
+            $referrerMobile,
             $post['email'],
             PasswordService::getObject()->hash($post['pass']),
             DBTIMESTAMP
