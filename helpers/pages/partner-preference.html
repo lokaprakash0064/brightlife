@@ -9,6 +9,7 @@
                     </div>
                     <div class="bl-form-panel-body">
                         <form method="post" action="{AbsUrl}save-partner-preference/{custId}/" name="savePartnerPref" id="savePartnerPref" role="form">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-group">
                                 <label>Marital Status</label>
                                 <div class="form-check form-check-inline ml-3">

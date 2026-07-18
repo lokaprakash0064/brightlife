@@ -5,6 +5,7 @@
                 <div class="card-body">
                     <h4 class="ba-form-section">Signup Data of {Name}</h4>
                     <form method="post" action="{AbsUrl}save-signup-admin/{cId}/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name" class="form-control" value="{Name}" required="required">

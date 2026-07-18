@@ -191,6 +191,7 @@
             </div>
             <div class="modal-body">
                 <form class="text-light" method="post" action="{AbsUrl}add-image/{custId}/" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                     <div class="form-group">
                         <label for="uploadPhoto">Upload Image(One or Multiple)</label>
                         <input type="file" class="form-control-file" name="uploadPhoto[]" id="uploadPhoto" multiple="multiple" required="required">

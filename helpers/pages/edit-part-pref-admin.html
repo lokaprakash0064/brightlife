@@ -5,6 +5,7 @@
                 <div class="card-body">
                     <h4 class="ba-form-section">Edit Partner Preference</h4>
                     <form method="post" action="{AbsUrl}save-part-pref-admin/{cId}/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                         <div class="form-group">
                             {marStat}
                         </div>

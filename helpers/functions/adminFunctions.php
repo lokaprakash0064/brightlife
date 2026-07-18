@@ -118,6 +118,7 @@ if (isLoggedAdmin() !== false) {
     if (!function_exists('saveSignUpAdmin')) {
 
         function saveSignUpAdmin($cId) {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             //var_dump($post);exit;
             if (!isset($post['name']) or empty($post['name'])) {
@@ -1115,6 +1116,7 @@ if (isLoggedAdmin() !== false) {
     if (!function_exists('saveProfAdmin')) {
 
         function saveProfAdmin($cuId) {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             if (!isset($post['prCrt']) or empty($post['prCrt'])) {
                 $_SESSION['STATUS'] = 'error';
@@ -1671,6 +1673,7 @@ if (isLoggedAdmin() !== false) {
     if (!function_exists('savePartPrefAdmin')) {
 
         function savePartPrefAdmin($suId) {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             if (!isset($post['resdingState']) or empty($post['resdingState'])) {
                 $_SESSION['STATUS'] = 'error';

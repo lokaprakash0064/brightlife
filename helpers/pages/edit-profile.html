@@ -9,6 +9,7 @@
                     </div>
                     <div class="bl-form-panel-body">
                         <form method="post" action="{AbsUrl}save-edited-personal-detail/{custId}/" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">

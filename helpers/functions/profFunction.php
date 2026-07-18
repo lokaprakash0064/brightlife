@@ -18,6 +18,7 @@ require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include.php';
 if (!function_exists('saveSignUp')) {
 
     function saveSignUp() {
+        csrf_validate();
         $post = DataFilter::getObject()->cleanData($_POST);
         // trim() is redundant after cleanData() (which already trims), kept only
         // for clarity that whitespace-only names are rejected below
@@ -539,6 +540,7 @@ if (!function_exists('searchProf')) {
 if (!function_exists('savePerDet')) {
 
     function savePerDet($cusId) {
+        csrf_validate();
         $post = DataFilter::getObject()->cleanData($_POST);
         //var_dump($cusId);exit;
         if (!isset($post['rashi']) or empty($post['rashi'])) {
@@ -686,6 +688,7 @@ if (!function_exists('savePerDet')) {
 if (!function_exists('savePartPref')) {
 
     function savePartPref($cusId) {
+        csrf_validate();
         $post = DataFilter::getObject()->cleanData($_POST);
         if (!isset($post['maritalStat']) or empty($post['maritalStat'])) {
             $_SESSION['STATUS'] = 'error';
@@ -1028,6 +1031,7 @@ if (!function_exists('viewProfSearch')) {
 if (!function_exists('sendMsg')) {
 
     function sendMsg($partId, $ownId) {
+        csrf_validate();
         if (isLogged() === false) {
             $_SESSION['STATUS'] = 'error';
             $_SESSION['MSG'] = 'Your Session has expired, Kindly Log In again';

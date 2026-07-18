@@ -163,6 +163,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-light" method="post" action="{AbsUrl}save-sign-up/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-group">
                                 <label for="name" class="col-12">Name</label>
                                 <div class="col-12">
@@ -251,6 +252,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-light" method="post" action="{AbsUrl}login/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-group">
                                 <label for="id" class="col-12">E-mail Id</label>
                                 <div class="col-12">
@@ -296,6 +298,7 @@
                     <div class="modal-body">
                         <div class="container">
                             <form method="post" action="{AbsUrl}set-dp/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                                 <div class="row">
                                     {imageData}
                                 </div>
@@ -336,6 +339,7 @@
                     </div>
                     <div class="modal-body">
                         <form method="post" action="{AbsUrl}send-message/{profID}/{ownId}/">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-group">
                                 <div class="col-12">
                                     <textarea class="form-control" required="required" name="msg" id="msg" placeholder="Type Your Message Here"></textarea>

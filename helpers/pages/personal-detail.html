@@ -9,6 +9,7 @@
                     </div>
                     <div class="bl-form-panel-body">
                         <form method="post" action="{AbsUrl}save-personal-detail/{custId}/" name="savePerDetForm" enctype="multipart/form-data" id="savePerDetForm" role="form">
+                            <input type="hidden" name="csrf_token" value="{CsrfToken}">
                             <div class="form-group">
                                 <label>Profile Created for</label>
                                 <div class="form-check form-check-inline ml-3">

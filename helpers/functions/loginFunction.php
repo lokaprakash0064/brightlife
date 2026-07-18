@@ -18,6 +18,7 @@ require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include.php';
 if (!function_exists('loginUser')) {
 
     function loginUser() {
+        csrf_validate();
         $post = DataFilter::getObject()->cleanData($_POST);
         if (!isset($post['id']) or empty($post['id'])) {
             $_SESSION['STATUS'] = 'error';

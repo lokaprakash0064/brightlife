@@ -217,6 +217,71 @@ if (!function_exists('getAlertMsg')) {
 
 }
 
+if (!function_exists('csrf_token')) {
+
+    /**
+     * function to return the current session's CSRF token,
+     * generating it once per session if it does not already exist
+     *
+     * @package Brightlife Matrimony
+     * @access public
+     * @category CommonFunction
+     * @return string The CSRF token for the current session
+     */
+    function csrf_token() {
+        if (!isset($_SESSION['csrf_token']) or empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+
+}
+
+if (!function_exists('csrf_input')) {
+
+    /**
+     * function to output the hidden CSRF token field to be embedded
+     * inside every state-changing HTML form
+     *
+     * @package Brightlife Matrimony
+     * @access public
+     * @category CommonFunction
+     * @return string The hidden input HTML markup
+     */
+    function csrf_input() {
+        return '<input type="hidden" name="csrf_token" value="' . csrf_token() . '">';
+    }
+
+}
+
+if (!function_exists('csrf_validate')) {
+
+    /**
+     * function to validate the CSRF token submitted with a POST request
+     * against the token stored in the session, following the project's
+     * existing session-flash + redirect error pattern. Stops processing
+     * immediately (via exit) when validation fails.
+     *
+     * @package Brightlife Matrimony
+     * @access public
+     * @category CommonFunction
+     * @return void
+     */
+    function csrf_validate() {
+        if (
+                !isset($_POST['csrf_token']) or empty($_POST['csrf_token'])
+                or !isset($_SESSION['csrf_token']) or empty($_SESSION['csrf_token'])
+                or !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+        ) {
+            $_SESSION['STATUS'] = 'error';
+            $_SESSION['MSG'] = 'Your session has expired or the request could not be verified, Please try again';
+            header('Location:' . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : ACCESS_URL));
+            exit;
+        }
+    }
+
+}
+
 if (!function_exists('isLogged')) {
 
     /**
@@ -294,6 +359,8 @@ if (!function_exists('assignTemplate')) {
         $replacementArray['AbsUrl'] = ACCESS_URL;
         $replacementArray['TimeStamp'] = time();
         $replacementArray['CurYr'] = date('Y');
+        // make the CSRF token available to every form on every page
+        $replacementArray['CsrfToken'] = csrf_token();
         // Set Home URL
         if (!isLogged()) {
             $replacementArray['HomeUrl'] = ACCESS_URL;

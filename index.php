@@ -140,6 +140,7 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             }
             break;
         case 'send-enquiry':
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             if (!isset($post['name']) or empty($post['name'])) {
                 $_SESSION['STATUS'] = 'error';
@@ -533,6 +534,7 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             assignTemplate($replaceData, 'loginTpl.html');
             break;
         case 'login-action':
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
 
             if (!isset($post['uname']) or empty($post['uname'])) {

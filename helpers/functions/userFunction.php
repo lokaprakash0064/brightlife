@@ -1244,6 +1244,7 @@ if (isLogged() !== true) {
     if (!function_exists('saveEditedPerData')) {
 
         function saveEditedPerData($uId) {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             if (!isset($post['residingCity']) or empty($post['residingCity'])) {
                 $_SESSION['STATUS'] = 'error';
@@ -1864,6 +1865,7 @@ if (isLogged() !== true) {
     if (!function_exists('saveEditedPatPref')) {
 
         function saveEditedPatPref($custId) {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             DbOperations::getObject()->transaction('start');
             DbOperations::getObject()->buildUpdateQuery(
@@ -1908,6 +1910,7 @@ if (isLogged() !== true) {
     if (!function_exists('addImage')) {
 
         function addImage($cusId) {
+            csrf_validate();
             if (!isset($_FILES['uploadPhoto']['name']) or empty($_FILES['uploadPhoto']['name'])) {
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Please attach one or multiple image';
@@ -1951,6 +1954,7 @@ if (isLogged() !== true) {
     if (!function_exists('setDp')) {
 
         function setDp() {
+            csrf_validate();
             $post = DataFilter::getObject()->cleanData($_POST);
             $sql = 'select img_id from bl_images where img_dp = 1 and img_su_id = ?';
             $imData = DbOperations::getObject()->fetchData($sql, [$_SESSION['UID']]);
