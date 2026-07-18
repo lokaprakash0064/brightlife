@@ -75,7 +75,7 @@ if (!function_exists('saveSignUp')) {
             $post['caste'],
             $post['mobile'],
             $post['email'],
-            DataFilter::getObject()->pwdHash($post['pass']),
+            PasswordService::getObject()->hash($post['pass']),
             DBTIMESTAMP
         ];
         $suc = DbOperations::getObject()->runQuery($ins);

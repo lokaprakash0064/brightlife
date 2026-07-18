@@ -14,7 +14,9 @@
  */
 // common include file required
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'include.php';
-if (isLoggedAdmin() !== true) {
+// isLoggedAdmin() returns the admin's name (string) or false, never boolean true —
+// compare against false so the else-branch (deny + exit) actually triggers.
+if (isLoggedAdmin() !== false) {
     if (!function_exists('getAdminData')) {
 
         function getAdminData() {
@@ -162,7 +164,7 @@ if (isLoggedAdmin() !== true) {
                 $post['caste'],
                 $post['mob'],
                 $post['mail'],
-                DataFilter::getObject()->pwdHash($post['rpass']),
+                PasswordService::getObject()->hash($post['rpass']),
                 DBTIMESTAMP,
                 $cId
             ];

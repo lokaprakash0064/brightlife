@@ -534,26 +534,44 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             break;
         case 'login-action':
             $post = DataFilter::getObject()->cleanData($_POST);
+
             if (!isset($post['uname']) or empty($post['uname'])) {
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Please enter your Username';
                 header('Location:' . ACCESS_URL . 'admin/');
                 exit;
             }
+
             if (!isset($post['pass']) or empty($post['pass'])) {
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Please enter your password';
                 header('Location:' . ACCESS_URL . 'admin/');
                 exit;
             }
-            $sql = 'select su_name, su_email from bl_sign_up where su_email = ? and su_pass = ?';
-            $aData = DbOperations::getObject()->fetchData($sql, [$post['uname'], DataFilter::getObject()->pwdHash($post['pass'])]);
-            if (count($aData) < 1 or ! isset($aData)) {
+
+            // fetch by identifier only, password is checked in PHP below so that both
+            // legacy (pwdHash) and native (password_hash) su_pass values can be verified
+            $sql = 'select su_id, su_name, su_email, su_pass from bl_sign_up where su_email = ?';
+            $aData = DbOperations::getObject()->fetchData($sql, [$post['uname']]);
+            if (count($aData) < 1 or ! isset($aData) or ! PasswordService::getObject()->verify($post['pass'], $aData[0]['su_pass'])) {
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Username or Password may be incorrect, Please try again';
                 header('Location:' . ACCESS_URL . 'admin/');
                 exit;
             } else {
+                // password verified above: transparently upgrade legacy or stale hashes
+                if (PasswordService::getObject()->isLegacyHash($aData[0]['su_pass'])
+                        or PasswordService::getObject()->needsRehash($aData[0]['su_pass'])) {
+                    $newHash = PasswordService::getObject()->upgradeLegacyHash($post['pass']);
+                    DbOperations::getObject()->transaction('start');
+                    DbOperations::getObject()->buildUpdateQuery('bl_sign_up', ['su_pass'], ['su_id']);
+                    $suc = DbOperations::getObject()->runQuery([$newHash, $aData[0]['su_id']]);
+                    if ($suc !== false) {
+                        DbOperations::getObject()->transaction('on');
+                    } else {
+                        DbOperations::getObject()->transaction('off');
+                    }
+                }
                 $_SESSION['AUID'] = $aData[0]['su_name'];
                 $_SESSION['STATUS'] = 'success';
                 $_SESSION['MSG'] = 'Welcome Administrator';
@@ -565,6 +583,7 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Please Enter Administrator Username and Password to Continue';
                 header('Location:' . ACCESS_URL . 'admin/');
+                exit;
             }
             $replaceData = [
                 'PageTitle' => 'Brightlife Matrimony - Admin Page',
