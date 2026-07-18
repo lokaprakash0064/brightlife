@@ -249,7 +249,7 @@ if (!class_exists('DataFilter')) {
                 }
             } catch (Exception $ex) {
                 // Catch any Exceptions occured
-                die('There seems an error while cleaning user submitted data. Description: ' . $ex->getMessage());
+                application_error($ex, 'Data cleaning failed');
             }
         }
 

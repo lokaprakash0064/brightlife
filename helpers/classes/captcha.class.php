@@ -429,7 +429,7 @@ if (!class_exists('Captcha')) {
                 imagedestroy($img);
             }
             catch(Exception $ex) {
-                die('Oh no.. Something gone wrong... Details: ' . $ex->getMessage());
+                application_error($ex, 'Captcha generation failed');
             }
         }
         

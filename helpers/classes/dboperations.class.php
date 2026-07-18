@@ -183,7 +183,7 @@ if (!class_exists('DbOperations')) {
             }
             // else catch any exceptions and set and error message
             catch(PDOException $ex) {
-                die ('Oops... I just failed to connect the database & the cause is: ' . "\r\n" . $ex->getMessage() . ' At line: '. __LINE__ .' in file: '. __FILE__);
+                application_error($ex, 'DB connection failed');
             }
         }
 
@@ -229,8 +229,7 @@ if (!class_exists('DbOperations')) {
                 }
             }
             catch(Exception $ex) {
-                var_dump($ex->getTrace());
-                die('Oops... Sorry, Unable to handle transactions...'."\r\n".'Because: '.$ex->getMessage() . ' At line: '. __LINE__ .' in file: '. __FILE__);
+                application_error($ex, 'DB transaction failed');
             }
         }
 
@@ -501,9 +500,7 @@ if (!class_exists('DbOperations')) {
              * otherwise catch exception and rollback the insert action
              */
             catch(PDOException $ex) {
-                // roll back the transaction
-                die('Oops... Could not prepare query...:- <br />##SQL: ' . $this->sql . "\t" . $ex->getMessage() . ' At line: ' . __LINE__ .' in file: '. __FILE__);
-                return false;
+                application_error($ex, 'DB query preparation failed - SQL: ' . $this->sql);
             }
         }
 
@@ -596,8 +593,7 @@ if (!class_exists('DbOperations')) {
             catch(Exception $ex) {
                 // roll back the transaction
                 $this->transaction('off');
-                die('Oops... the SQL you have passed seems incorrect:- ' . "\t" . '##SQL: ' . $this->sql . "\t" . $ex->getMessage() . ' At line: '. __LINE__ .' in file: '. __FILE__);
-                return false;
+                application_error($ex, 'DB query execution failed - SQL: ' . $this->sql);
             }
         }
 
@@ -659,8 +655,7 @@ if (!class_exists('DbOperations')) {
             }
 
             catch(Exception $ex) {
-                 die('Oops... Some Problem occured while fetching data:- ' . "\t" . '##SQL: ' . $this->sql . "\t" . $ex->getMessage() . ' At line: '. __LINE__ .' in file: '. __FILE__);
-                 return false;
+                application_error($ex, 'DB data fetch failed - SQL: ' . $this->sql);
             }
         }
 

@@ -36,6 +36,106 @@ if (!headers_sent()) {
 error_reporting(E_ALL | E_STRICT);
 
 /*
+ * single generic message shown to the browser for any unexpected failure
+ * (PHP warnings/notices are logged silently and never shown at all;
+ * this message is only for uncaught exceptions and fatal errors)
+ */
+if (!defined('GENERIC_ERROR_MESSAGE')) {
+    define('GENERIC_ERROR_MESSAGE', 'Something went wrong. Please try again later.');
+}
+
+if (!function_exists('application_error')) {
+
+    /**
+     * centralized helper to log an exception with full detail and
+     * terminate the request with the generic user-facing message,
+     * used in place of the ad-hoc "die($ex->getMessage())" pattern
+     * that used to leak SQL/paths/traces to the browser
+     *
+     * @param Throwable $ex      the caught exception
+     * @param string    $context optional short label identifying the call site
+     * @return void this function always terminates the script
+     */
+    function application_error($ex, $context = '') {
+        error_log(
+                '[BrightLife] ' . ($context !== '' ? $context . ' - ' : '')
+                . $ex->getMessage() . ' in ' . $ex->getFile() . ' on line ' . $ex->getLine()
+                . "\nTrace: " . $ex->getTraceAsString()
+        );
+        die(GENERIC_ERROR_MESSAGE);
+    }
+
+}
+
+if (!function_exists('application_error_handler')) {
+
+    /**
+     * global handler for PHP warnings/notices/recoverable errors,
+     * logs them and suppresses their output to the browser
+     */
+    function application_error_handler($errno, $errstr, $errfile, $errline) {
+        // respect @-suppressed errors and error_reporting() level
+        if (!(error_reporting() & $errno)) {
+            return false;
+        }
+        error_log('[BrightLife] PHP error [' . $errno . ']: ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
+        // E_USER_ERROR is application-triggered and meant to be fatal;
+        // terminate with the generic message instead of letting execution continue
+        if ($errno === E_USER_ERROR) {
+            die(GENERIC_ERROR_MESSAGE);
+        }
+        // for warnings/notices/recoverable errors, returning true suppresses
+        // PHP's own output and lets execution continue
+        return true;
+    }
+
+}
+
+set_error_handler('application_error_handler');
+
+if (!function_exists('application_exception_handler')) {
+
+    /**
+     * global fallback for any exception that escapes every try/catch,
+     * logs full detail and shows only the generic message
+     */
+    function application_exception_handler($ex) {
+        error_log(
+                '[BrightLife] Uncaught exception: ' . $ex->getMessage() . ' in ' . $ex->getFile()
+                . ' on line ' . $ex->getLine() . "\nTrace: " . $ex->getTraceAsString()
+        );
+        if (!headers_sent()) {
+            http_response_code(500);
+        }
+        echo GENERIC_ERROR_MESSAGE;
+    }
+
+}
+
+set_exception_handler('application_exception_handler');
+
+if (!function_exists('application_shutdown_handler')) {
+
+    /**
+     * detects fatal errors that bypass both set_error_handler() and
+     * set_exception_handler() (E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR),
+     * logs them and shows the generic message if nothing has been output yet
+     */
+    function application_shutdown_handler() {
+        $error = error_get_last();
+        if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+            error_log('[BrightLife] Fatal error: ' . $error['message'] . ' in ' . $error['file'] . ' on line ' . $error['line']);
+            if (!headers_sent()) {
+                echo GENERIC_ERROR_MESSAGE;
+            }
+        }
+    }
+
+}
+
+register_shutdown_function('application_shutdown_handler');
+
+/*
  * set default time-zone to confirm the timezone
  * else it will show an error that system time is not reliable
  * Change it as per your timezone
@@ -424,7 +524,7 @@ if (!function_exists('assignTemplate')) {
                 $pdf->WriteHTML($finalContents);
                 $pdf->Output('voucher.pdf', 'F');
             } catch (Exception $ex) {
-                die('Error : ' . $ex->getMessage());
+                application_error($ex, 'PDF generation failed');
             }
         } else {
             echo $finalContents;
