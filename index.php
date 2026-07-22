@@ -553,7 +553,7 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
 
             // fetch by identifier only, password is checked in PHP below so that both
             // legacy (pwdHash) and native (password_hash) su_pass values can be verified
-            $sql = 'select su_id, su_name, su_email, su_pass from bl_sign_up where su_email = ?';
+            $sql = 'select su_id, su_name, su_email, su_pass from bl_sign_up where su_email = ? and su_is_admin = 1';
             $aData = DbOperations::getObject()->fetchData($sql, [$post['uname']]);
             if (count($aData) < 1 or ! isset($aData) or ! PasswordService::getObject()->verify($post['pass'], $aData[0]['su_pass'])) {
                 $_SESSION['STATUS'] = 'error';
