@@ -44,6 +44,9 @@ if (!function_exists('loginUser')) {
             header('Location:' . $_SERVER['HTTP_REFERER']);
             exit;
         }
+        // regenerate the session ID now that authentication succeeded, before
+        // any session data is written, to prevent session fixation
+        session_regenerate_id(true);
         // password verified above: transparently upgrade legacy or stale hashes
         if (PasswordService::getObject()->isLegacyHash($cusData[0]['su_pass'])
                 or PasswordService::getObject()->needsRehash($cusData[0]['su_pass'])) {

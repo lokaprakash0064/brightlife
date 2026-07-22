@@ -511,6 +511,9 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
         case 'logout':
             session_destroy();
             @session_start();
+            // retire the pre-logout session ID rather than silently reviving it
+            // for this flash-message session
+            session_regenerate_id(true);
             $_SESSION['STATUS'] = 'info';
             $_SESSION['MSG'] = 'You logged out successfully';
             session_write_close();
@@ -520,6 +523,8 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
             if (isLogged() !== false) {
                 session_destroy();
                 @session_start();
+                // retire the pre-redirect session ID rather than silently reviving it
+                session_regenerate_id(true);
                 session_write_close();
                 header('Location:' . ACCESS_URL . 'admin/');
                 exit;
@@ -561,6 +566,9 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
                 header('Location:' . ACCESS_URL . 'admin/');
                 exit;
             } else {
+                // regenerate the session ID now that authentication succeeded, before
+                // any session data is written, to prevent session fixation
+                session_regenerate_id(true);
                 // password verified above: transparently upgrade legacy or stale hashes
                 if (PasswordService::getObject()->isLegacyHash($aData[0]['su_pass'])
                         or PasswordService::getObject()->needsRehash($aData[0]['su_pass'])) {
@@ -628,6 +636,9 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
         case 'log-out':
             session_destroy();
             @session_start();
+            // retire the pre-logout session ID rather than silently reviving it
+            // for this flash-message session
+            session_regenerate_id(true);
             $_SESSION['STATUS'] = 'info';
             $_SESSION['MSG'] = 'You logged out successfully';
             session_write_close();
