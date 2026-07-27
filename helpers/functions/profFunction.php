@@ -195,7 +195,8 @@ if (!function_exists('saveSignUp')) {
             $referrerMobile,
             $post['email'],
             PasswordService::getObject()->hash($post['pass']),
-            DBTIMESTAMP
+            DBTIMESTAMP,
+            0,
         ];
         $suc = DbOperations::getObject()->runQuery($ins);
         if ($suc !== false) {
