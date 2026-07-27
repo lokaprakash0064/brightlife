@@ -23,7 +23,7 @@ if (isLoggedAdmin() !== false) {
             $sql = 'select pp_cust_id, signup_id, email_id, pp_dttm from bl_partner_preference '
                     . ' order by pp_dttm desc';
             $pData = DbOperations::getObject()->fetchData($sql);
-            $suSql = 'select su_name, su_dob, su_mobile, su_email from bl_sign_up where su_id = ?';
+            $suSql = 'select su_name, su_dob, su_mobile, su_referrer_mobile, su_email from bl_sign_up where su_id = ?';
             $suRes = DbOperations::getObject()->prepareQuery($suSql);
             $aaData = [];
             if (count($pData) > 0) {
@@ -34,6 +34,7 @@ if (isLoggedAdmin() !== false) {
                         $suData[0]['su_name'],
                         $suData[0]['su_email'],
                         $suData[0]['su_mobile'],
+                        $suData[0]['su_referrer_mobile'],
                         date('jS M Y', strtotime($suData[0]['su_dob'])),
                         date('d/m/Y H:i:s', strtotime($dat['pp_dttm'])),
                         '<div class="dropdown show">
