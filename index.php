@@ -556,11 +556,41 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
                 exit;
             }
 
+            // rate limiting: IP bucket is checked ahead of account resolution so a
+            // locked-out IP never even reaches the account query; opportunistic
+            // cleanup rides along with every login attempt (see AuthRateLimiter)
+            $adminClientIp = $_SERVER['REMOTE_ADDR'] ?? '';
+            AuthRateLimiter::getObject()->cleanupExpiredBuckets(AUTH_RATE_LIMIT_CLEANUP_RETENTION_SECONDS);
+            $adminIpBucket = AuthRateLimiter::getObject()->checkBucket(AuthRateLimiter::BUCKET_TYPE_IP, $adminClientIp, 'admin_login');
+            if ($adminIpBucket['isLocked']) {
+                $_SESSION['STATUS'] = 'error';
+                $_SESSION['MSG'] = 'Username or Password may be incorrect, Please try again';
+                header('Location:' . ACCESS_URL . 'admin/');
+                exit;
+            }
+
             // fetch by identifier only, password is checked in PHP below so that both
             // legacy (pwdHash) and native (password_hash) su_pass values can be verified
             $sql = 'select su_id, su_name, su_email, su_pass from bl_sign_up where su_email = ? and su_is_admin = 1';
             $aData = DbOperations::getObject()->fetchData($sql, [$post['uname']]);
+            // known-account rule: an account bucket only ever exists for an
+            // identifier that actually resolved to a row here
+            $adminAccountResolved = (count($aData) >= 1) and isset($aData[0]['su_id']);
+            if ($adminAccountResolved) {
+                $adminAccountBucket = AuthRateLimiter::getObject()->checkBucket(AuthRateLimiter::BUCKET_TYPE_ACCOUNT, $aData[0]['su_id'], 'admin_login');
+                if ($adminAccountBucket['isLocked']) {
+                    $_SESSION['STATUS'] = 'error';
+                    $_SESSION['MSG'] = 'Username or Password may be incorrect, Please try again';
+                    header('Location:' . ACCESS_URL . 'admin/');
+                    exit;
+                }
+            }
+
             if (count($aData) < 1 or ! isset($aData) or ! PasswordService::getObject()->verify($post['pass'], $aData[0]['su_pass'])) {
+                AuthRateLimiter::getObject()->recordFailure(AuthRateLimiter::BUCKET_TYPE_IP, $adminClientIp, 'admin_login', AUTH_RATE_LIMIT_WINDOW_SECONDS, AUTH_RATE_LIMIT_MAX_ATTEMPTS, AUTH_RATE_LIMIT_LOCKOUT_SECONDS);
+                if ($adminAccountResolved) {
+                    AuthRateLimiter::getObject()->recordFailure(AuthRateLimiter::BUCKET_TYPE_ACCOUNT, $aData[0]['su_id'], 'admin_login', AUTH_RATE_LIMIT_WINDOW_SECONDS, AUTH_RATE_LIMIT_MAX_ATTEMPTS, AUTH_RATE_LIMIT_LOCKOUT_SECONDS);
+                }
                 $_SESSION['STATUS'] = 'error';
                 $_SESSION['MSG'] = 'Username or Password may be incorrect, Please try again';
                 header('Location:' . ACCESS_URL . 'admin/');
@@ -569,6 +599,9 @@ if (isset($opt['acti0n']) and ! empty($opt['acti0n'])) {
                 // regenerate the session ID now that authentication succeeded, before
                 // any session data is written, to prevent session fixation
                 session_regenerate_id(true);
+                // rate limiting: a successful login clears only the account bucket;
+                // the IP bucket is deliberately left untouched (frozen policy)
+                AuthRateLimiter::getObject()->clearAccountBucket($aData[0]['su_id']);
                 // password verified above: transparently upgrade legacy or stale hashes
                 if (PasswordService::getObject()->isLegacyHash($aData[0]['su_pass'])
                         or PasswordService::getObject()->needsRehash($aData[0]['su_pass'])) {
