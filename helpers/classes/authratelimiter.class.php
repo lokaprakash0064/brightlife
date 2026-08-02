@@ -29,6 +29,12 @@
  *   along with - see cleanupExpiredBuckets().
  * - Audit logging (bl_auth_events) is a fully separate subsystem with
  *   its own table and its own helper; this class never touches it.
+ * - Lock-extension policy: once a bucket is locked, further failures
+ *   arriving while that lock is still active are a no-op - they never
+ *   extend locked_until, increment attempts, or touch window_start /
+ *   last_attempt_at. Otherwise an attacker could keep an account locked
+ *   indefinitely just by continuously sending failing requests. See
+ *   applyFailureToExistingRow().
  *
  * This class is not yet called from any authentication flow. It is an
  * isolated, independently reviewable unit (Phase 2); wiring it into
@@ -210,38 +216,49 @@ if (!class_exists('AuthRateLimiter')) {
             DbOperations::getObject()->transaction('start');
 
             if (($existing === false) or (count($existing) < 1)) {
-                // first failure for this bucket: create its row
-                DbOperations::getObject()->buildInsertQuery(
+                /*
+                 * first failure for this bucket: create its row.
+                 *
+                 * Race window: two concurrent requests can both run the
+                 * fetchBucketRow() above, both find no row, and both reach
+                 * this insert. The table's unique key on
+                 * (bucket_type, bucket_identifier, endpoint) lets only one
+                 * of them succeed; the other gets a duplicate-key
+                 * violation (SQLSTATE 23000 / MySQL error 1062).
+                 *
+                 * DbOperations::runQuery() treats every PDOException as
+                 * fatal - it logs and die()s internally, before control
+                 * ever returns to this method - so there is no way to
+                 * catch and retry through it. The statement is therefore
+                 * executed directly here (buildInsertQuery() already
+                 * returns the prepared PDOStatement) purely so this one
+                 * specific, expected race can be caught. Losing the race
+                 * is not an error: it means a concurrent request just
+                 * created the row we were about to create, so we simply
+                 * re-read it and fall through to the normal update path
+                 * below, exactly once. Any other exception is handed to
+                 * application_error() exactly as runQuery() would have
+                 * done, preserving today's behaviour.
+                 */
+                $insertStmt = DbOperations::getObject()->buildInsertQuery(
                     'bl_auth_rate_limit',
                     array('bucket_type', 'bucket_identifier', 'endpoint', 'attempts', 'window_start', 'last_attempt_at', 'locked_until')
                 );
-                $ok = DbOperations::getObject()->runQuery(
-                    array($bucketType, $identifier, $endpoint, 1, $nowStr, $nowStr, null)
-                );
-            } else {
-                $row = $existing[0];
-                $windowExpired = (strtotime($row['window_start']) < ($now - $windowSeconds));
-                if ($windowExpired) {
-                    // the previous streak has fully aged out: this failure
-                    // starts a brand new streak rather than continuing the old one
-                    $attempts = 1;
-                    $windowStart = $nowStr;
-                    $lockedUntil = null;
-                } else {
-                    $attempts = intval($row['attempts']) + 1;
-                    $windowStart = $row['window_start'];
-                    $lockedUntil = ($attempts >= $maxAttempts)
-                        ? date('Y-m-d H:i:s', $now + $lockoutSeconds)
-                        : $row['locked_until'];
+                try {
+                    $insertStmt->execute(array($bucketType, $identifier, $endpoint, 1, $nowStr, $nowStr, null));
+                    $ok = true;
+                } catch (PDOException $ex) {
+                    $isDuplicateKey = ($ex->getCode() === '23000')
+                        || (isset($ex->errorInfo[1]) && (intval($ex->errorInfo[1]) === 1062));
+                    if (!$isDuplicateKey) {
+                        DbOperations::getObject()->transaction('off');
+                        application_error($ex, 'AuthRateLimiter insert failed - bucket_type=' . $bucketType);
+                    }
+                    $existing = $this->fetchBucketRow($bucketType, $identifier, $endpoint);
+                    $ok = $this->applyFailureToExistingRow($existing, $bucketType, $identifier, $endpoint, $now, $nowStr, $windowSeconds, $maxAttempts, $lockoutSeconds);
                 }
-                DbOperations::getObject()->buildUpdateQuery(
-                    'bl_auth_rate_limit',
-                    array('attempts', 'window_start', 'last_attempt_at', 'locked_until'),
-                    array('bucket_type', 'bucket_identifier', 'endpoint')
-                );
-                $ok = DbOperations::getObject()->runQuery(
-                    array($attempts, $windowStart, $nowStr, $lockedUntil, $bucketType, $identifier, $endpoint)
-                );
+            } else {
+                $ok = $this->applyFailureToExistingRow($existing, $bucketType, $identifier, $endpoint, $now, $nowStr, $windowSeconds, $maxAttempts, $lockoutSeconds);
             }
 
             if ($ok !== false) {
@@ -251,6 +268,71 @@ if (!class_exists('AuthRateLimiter')) {
             }
 
             return $this->checkBucket($bucketType, $identifier, $endpoint);
+        }
+
+        // }}}
+        // {{{ applyFailureToExistingRow()
+
+        /**
+         * Apply one failed attempt to a bucket row that is already known
+         * to exist (normal path, and the duplicate-key retry path in
+         * recordFailure()).
+         *
+         * Lock-extension policy (frozen business rule): once a bucket is
+         * already locked (locked_until in the future), further failures
+         * arriving while that lock is still active must NOT extend
+         * locked_until, increment attempts, or touch window_start /
+         * last_attempt_at - this method returns immediately without
+         * writing anything. Without this guard, an attacker could keep
+         * an account locked indefinitely just by continuously sending
+         * failing requests and repeatedly pushing locked_until further
+         * into the future.
+         *
+         * @param array  $existing       The row(s) from fetchBucketRow() (uses $existing[0])
+         * @param string $bucketType     One of BUCKET_TYPE_ACCOUNT / BUCKET_TYPE_IP
+         * @param string $identifier     The account id or client IP
+         * @param string $endpoint       The already-resolved endpoint value
+         * @param int    $now            Current time, per PHP's time()
+         * @param string $nowStr         $now formatted as 'Y-m-d H:i:s'
+         * @param int    $windowSeconds  Length of the sliding tracking window, in seconds
+         * @param int    $maxAttempts    Attempts within the window before the bucket locks
+         * @param int    $lockoutSeconds How long a lock lasts once triggered, in seconds
+         *
+         * @return mixed The runQuery() result, or true if skipped because the bucket is locked
+         * @access private
+         */
+        private function applyFailureToExistingRow($existing, $bucketType, $identifier, $endpoint, $now, $nowStr, $windowSeconds, $maxAttempts, $lockoutSeconds)
+        {
+            $row = $existing[0];
+
+            // lock-extension policy: an active lock is left completely
+            // untouched - no attempts/window/timestamp/lock field is written
+            if (($row['locked_until'] !== null) && (strtotime($row['locked_until']) > $now)) {
+                return true;
+            }
+
+            $windowExpired = (strtotime($row['window_start']) < ($now - $windowSeconds));
+            if ($windowExpired) {
+                // the previous streak has fully aged out: this failure
+                // starts a brand new streak rather than continuing the old one
+                $attempts = 1;
+                $windowStart = $nowStr;
+                $lockedUntil = null;
+            } else {
+                $attempts = intval($row['attempts']) + 1;
+                $windowStart = $row['window_start'];
+                $lockedUntil = ($attempts >= $maxAttempts)
+                    ? date('Y-m-d H:i:s', $now + $lockoutSeconds)
+                    : $row['locked_until'];
+            }
+            DbOperations::getObject()->buildUpdateQuery(
+                'bl_auth_rate_limit',
+                array('attempts', 'window_start', 'last_attempt_at', 'locked_until'),
+                array('bucket_type', 'bucket_identifier', 'endpoint')
+            );
+            return DbOperations::getObject()->runQuery(
+                array($attempts, $windowStart, $nowStr, $lockedUntil, $bucketType, $identifier, $endpoint)
+            );
         }
 
         // }}}
