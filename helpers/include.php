@@ -70,6 +70,30 @@ if (!defined('GENERIC_ERROR_MESSAGE')) {
     define('GENERIC_ERROR_MESSAGE', 'Something went wrong. Please try again later.');
 }
 
+/*
+ * Auth rate-limiting policy (Phase 6C), centralized here because both
+ * Member Login and Admin Login apply the same window/attempts/lockout
+ * tuning against the shared AuthRateLimiter helper (helpers/classes/
+ * authratelimiter.class.php). Values are seconds/counts, PHP-time-based
+ * per that helper's frozen design - never DB-time.
+ */
+if (!defined('AUTH_RATE_LIMIT_WINDOW_SECONDS')) {
+    // sliding window during which failures accumulate toward a lock
+    define('AUTH_RATE_LIMIT_WINDOW_SECONDS', 900);
+}
+if (!defined('AUTH_RATE_LIMIT_MAX_ATTEMPTS')) {
+    // failures allowed within the window before the bucket locks
+    define('AUTH_RATE_LIMIT_MAX_ATTEMPTS', 5);
+}
+if (!defined('AUTH_RATE_LIMIT_LOCKOUT_SECONDS')) {
+    // how long a bucket stays locked once triggered
+    define('AUTH_RATE_LIMIT_LOCKOUT_SECONDS', 900);
+}
+if (!defined('AUTH_RATE_LIMIT_CLEANUP_RETENTION_SECONDS')) {
+    // how long after its last failure a bucket is kept before opportunistic cleanup
+    define('AUTH_RATE_LIMIT_CLEANUP_RETENTION_SECONDS', 86400);
+}
+
 if (!function_exists('application_error')) {
 
     /**
