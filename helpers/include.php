@@ -53,6 +53,15 @@ if (!headers_sent()) {
 error_reporting(E_ALL | E_STRICT);
 
 /*
+ * route all error_log() output (PHP engine errors as well as the
+ * application_* handlers below) to a single project-root log file
+ * instead of relying on the host's default SAPI error log location.
+ * blocked from direct HTTP access by the \.log deny rule in .htaccess.
+ */
+ini_set('log_errors', '1');
+ini_set('error_log', dirname(__DIR__) . '/app_error.log');
+
+/*
  * single generic message shown to the browser for any unexpected failure
  * (PHP warnings/notices are logged silently and never shown at all;
  * this message is only for uncaught exceptions and fatal errors)
